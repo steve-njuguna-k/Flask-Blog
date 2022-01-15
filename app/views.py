@@ -72,5 +72,23 @@ def email_verification_sent():
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
-    form = LoginForm()
-    return render_template('Login.html', form = form)
+    form = LoginForm(request.form)
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        if user and user.confirmed ==0:
+            flash('⚠️ Your Acount Is Not Activated! Please Check Your Email Inbox And Click The Activation Link We Sent To Activate It', 'danger')
+            return render_template('Login.html', form=form)
+
+        if user and bcrypt.check_password_hash(user.password, request.form['password']):
+            login_user(user)
+            return redirect(url_for('home'))
+        
+        if user and not bcrypt.check_password_hash(user.password, request.form['password']):
+            flash('⚠️ Invalid Password!', 'danger')
+            return render_template('Login.html', form=form)
+
+        if not user:
+            flash('⚠️ Account Does Not Exist!', 'danger')
+            return render_template('Login.html', form=form)
+
+    return render_template('Login.html', form=form)

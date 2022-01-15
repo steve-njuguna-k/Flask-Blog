@@ -1,4 +1,3 @@
-import unittest
 from flask import Flask
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
@@ -20,8 +19,8 @@ app.config.from_pyfile('config.py')
 heroku = Heroku(app)
 migrate = Migrate(app, db)
 
-db = SQLAlchemy(app)
 db.init_app(app)
+db = SQLAlchemy(app)
 
 login.init_app(app)
 login.login_view = 'login'

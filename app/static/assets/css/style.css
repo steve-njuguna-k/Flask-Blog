@@ -1,11 +1,11 @@
 body {
-    font-family:'Nunito', Tahoma, Geneva, Verdana, sans-serif;
+    font-family:'Poppins', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #efefef;
     color: #000;
 }
 
 p {
-    font-size: 20px;
+    font-size: 14px;
 	color: #000;
 }
 
@@ -52,6 +52,7 @@ a:hover {
     border-color: #fff;
     color: #6d81f5;
     border-radius: 9px;
+    margin-top: 4px;
 }
 
 .btn-primary:hover{
@@ -59,6 +60,7 @@ a:hover {
     border-color: #fff;
     color: #fff;
     border-radius: 9px;
+    margin-top: 4px;
 }
 
 .btn-link{
@@ -77,6 +79,103 @@ a:hover {
     color: #000;
 }
 
+.logocolour{
+    color: #6d81f5;
+}
+
 .rounded{
     border-radius: 9px;
+}
+
+.form-control {
+	height: 41px;
+	background: #f2f2f2;
+	box-shadow: none !important;
+	border: none;
+}
+
+.form-control:focus {
+	background: #e2e2e2;
+}
+
+.form-control, .btn {        
+	border-radius: 9px;
+}
+
+.signup-form {
+	width: 450px;
+	margin: 30px auto;
+}
+
+.signup-form form {
+	border-radius: 9px;
+	margin-bottom: 5px;
+	background: #fff;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	padding: 30px;
+}
+.signup-form h1 {
+	color: #000 ;
+	font-weight: bold;
+	margin-top: 0;
+}
+
+.signup-form hr  {
+	margin: 0 -30px 20px;
+}   
+
+.signup-form .form-group {
+	margin-bottom: 20px;
+}
+
+.signup-form input[type="checkbox"] {
+	margin-top: 3px;
+}
+.signup-form .row div:first-child {
+	padding-right: 10px;
+}
+
+.signup-form .row div:last-child {
+	padding-left: 10px;
+}
+
+.signup-form .btn {        
+	font-size: 16px;
+	font-weight: bold;
+	background: #6d81f5 ;
+	border: none;
+	min-height: 50px;
+    color: #fff;
+}
+
+.signup-form .btn:hover, .signup-form .btn:focus {
+	background: #6d81f5 !important;
+	outline: none;
+	min-height: 50px;
+    color: #fff;
+}
+
+.signup-form a {
+	color: #000;
+	text-decoration: none;
+}
+
+.signup-form a:hover {
+    color: #000 ;
+	text-decoration: none;
+}
+
+.signup-form form a {
+	color: #6d81f5;
+	text-decoration: none;
+}	
+
+.signup-form form a:hover {
+    color: #6d81f5;
+	text-decoration: none;
+}
+
+.signup-form .hint-text  {
+	padding-bottom: 15px;
+	text-align: center;
 }

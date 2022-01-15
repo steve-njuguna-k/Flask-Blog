@@ -10,12 +10,12 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav mx-auto">
-                    <form class="form-inline my-2 my-lg-0">
-                        <div class="bg-light rounded">
-                            <div class="input-group">
-                                <input type="search" placeholder="Search Blog Articles" class="form-control border-0 bg-light" style="width: 500px;">
-                                <div class="input-group-append">
-                                  <button type="submit" class="btn btn-link"><i class="fal fa-search"></i></button>
+                    <form class="form-inline my-2 my-lg-0 searchbar">
+                        <div class="bg-light rounded searchbar">
+                            <div class="input-group searchbar">
+                                <input type="search" placeholder="Search Blog Articles" class="form-control border-0 bg-light searchbar" style="width: 500px;">
+                                <div class="input-group-append searchbar">
+                                  <button type="submit" class="btn btn-link searchbar"><i class="fal fa-search"></i></button>
                                 </div>
                             </div>
                         </div>
@@ -23,7 +23,7 @@
                 </ul>
                 <div class="d-flex">
                     <a href="#">
-                        <button type="submit" class="btn btn-primary"><i class="fal fa-pencil"></i> Write A Post</button>
+                        <button type="submit" class="btn btn-primary"><i class="fal fa-pencil"></i> Create A Post</button>
                     </a>
                     <a href="{{ url_for('register') }}">
                         <button class="btn btn-md btn-link ms-3" style="margin-left: 30px;"><i class="fal fa-user-circle fa-2x"></i></button>

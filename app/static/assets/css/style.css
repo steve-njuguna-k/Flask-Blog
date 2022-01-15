@@ -1,5 +1,5 @@
 body {
-    font-family:'Poppins', Tahoma, Geneva, Verdana, sans-serif;
+    font-family:'SF Pro Text', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #efefef;
     color: #000;
 }
@@ -47,12 +47,17 @@ a:hover {
 	background-color: #6d81f5 ;
 }
 
-.btn-primary{
+.searchbar{
+    border-radius: 9px;
+}
+
+.btn-primary, .btn-primary:active, .btn-primary:focus{
     background-color: #f1f5fa;
     border-color: #fff;
     color: #6d81f5;
     border-radius: 9px;
     margin-top: 4px;
+    padding: 9px;
 }
 
 .btn-primary:hover{
@@ -61,6 +66,7 @@ a:hover {
     color: #fff;
     border-radius: 9px;
     margin-top: 4px;
+    padding: 9px;
 }
 
 .btn-link{

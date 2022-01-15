@@ -266,3 +266,14 @@ a:hover {
 	padding-bottom: 15px;
 	text-align: center;
 }
+
+.toggle-password {
+    float: right;
+    cursor: pointer;
+    margin-right: 15px;
+    margin-top: -30px;
+}
+
+.alert{
+	margin: 10px;
+}

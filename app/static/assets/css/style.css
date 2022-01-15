@@ -1,0 +1,82 @@
+body {
+    font-family:'Nunito', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #efefef;
+    color: #000;
+}
+
+p {
+    font-size: 20px;
+	color: #000;
+}
+
+a {
+    text-decoration: none;
+    color: #6d81f5;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #6d81f5;
+}
+
+.navbar.navbar-dark .nav-item .nav-link { 
+    color: #000!important; 
+    background-color: #fff;
+} 
+
+.navbar.navbar-dark .nav-item .nav-link:hover { 
+    color: #6d81f5 !important; 
+    background-color: #fff;
+}
+
+.navbar {
+    background-color: #fff!important;
+}
+
+.navbar-nav {
+    background-color: #fff;
+}
+
+.navbar-brand {
+    background-color: #fff;
+}
+
+.navbar-dark .navbar-toggler {
+    color: #6d81f5 ;
+    border-color: #6d81f5 ;
+	background-color: #6d81f5 ;
+}
+
+.btn-primary{
+    background-color: #f1f5fa;
+    border-color: #fff;
+    color: #6d81f5;
+    border-radius: 9px;
+}
+
+.btn-primary:hover{
+    background-color: #6d81f5;
+    border-color: #fff;
+    color: #fff;
+    border-radius: 9px;
+}
+
+.btn-link{
+    color: #6d81f5;
+}
+
+.btn-link:hover{
+    color: #6d81f5;
+}
+
+.logo{
+    margin-bottom: 0px;
+}
+
+.logo-colour{
+    color: #000;
+}
+
+.rounded{
+    border-radius: 9px;
+}

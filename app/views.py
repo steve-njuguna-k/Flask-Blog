@@ -40,7 +40,6 @@ def register():
     return render_template('Register.html', form=form)
 
 @app.route('/confirm/<token>')
-@login_required
 def confirm_email(token):
     if User.confirmed==1:
         flash('✅ Account Already Confirmed! You Can Log In.', 'success')
@@ -61,7 +60,6 @@ def confirm_email(token):
     return redirect(url_for('login'))
 
 @app.route('/sent')
-@login_required
 def email_verification_sent():
     if User.confirmed==1:
         flash('✅ You Can Now Log In!', 'success')

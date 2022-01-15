@@ -4,6 +4,11 @@ from flask_login import UserMixin
 
 db = SQLAlchemy()
 
+blog_tag = db.Table('post_tag',
+db.Column('post_id', db.Integer, db.ForeignKey('posts.id')),
+db.Column('tag_id', db.Integer, db.ForeignKey('tags.id'))
+)
+
 class User(UserMixin, db.Model):
     __tablename__ = 'users'
 
@@ -14,6 +19,7 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(256), unique=True)
     blogs = db.relationship('Posts',backref = 'user',lazy = "dynamic")
     comments = db.relationship('Comments',backref = 'user',lazy = "dynamic")
+    image_file = db.Column(db.String(20), nullable=False, default='default.png')
     registered_on = db.Column(db.DateTime, nullable=False)
     confirmed = db.Column(db.Boolean, nullable=False, default=False)
     confirmed_on = db.Column(db.DateTime, nullable=True)
@@ -54,6 +60,7 @@ class Posts(db.Model):
     description = db.Column(db.String(5000))
     category = db.Column(db.String(50))
     comment = db.relationship('Comments', backref='post', lazy='dynamic')
+    tags = db.relationship('Tags',secondary=blog_tag, back_populates="posts")
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
     date_published = db.Column(db.DateTime, default = datetime.datetime.utcnow())
 
@@ -113,3 +120,10 @@ class Comments(db.Model):
 
     def __repr__(self):
         return '<Comment: {}>'.format(self.comment)
+
+class Tags(db.Model):
+    __tablename__ = 'tags'
+
+    id=db.Column(db.Integer, primary_key=True)
+    name=db.Column(db.String, unique=True, nullable=False)
+    posts = db.relationship('Posts', secondary = blog_tag, back_populates = "tags")

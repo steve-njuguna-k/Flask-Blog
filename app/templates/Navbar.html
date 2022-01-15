@@ -13,7 +13,7 @@
                     <form class="form-inline my-2 my-lg-0 searchbar">
                         <div class="bg-light rounded searchbar">
                             <div class="input-group searchbar">
-                                <input type="search" placeholder="Search Blog Articles" class="form-control border-0 bg-light searchbar" style="width: 500px;">
+                                <input type="search" placeholder="Search Blog Articles" class="form-control border-0 bg-light searchbar" style="width: 600px;">
                                 <div class="input-group-append searchbar">
                                   <button type="submit" class="btn btn-link searchbar"><i class="fal fa-search"></i></button>
                                 </div>
@@ -27,14 +27,13 @@
                         <button type="submit" class="btn btn-primary"><i class="fal fa-pencil"></i> Create A Post</button>
                     </a>
                     <div class="dropdown">
-                        <button class="btn btn-link dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
-                        <i class="fal fa-user fa-lg"></i>
+                        <button class="btn btn-md btn-link ms-3" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false" style="margin-left: 30px;">
+                        <i class="fal fa-user-circle fa-2x"></i>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#" data-toggle="modal" data-target="#staticBackdrop"><i class="fal fa-plus-square"></i> Add A Pitch</a>
                             <a class="dropdown-item" href="#"><i class="fal fa-user-alt"></i> My Profile</a>
-                            <a class="dropdown-item" href="#"><i class="fal fa-file-alt"></i> My Pitches</a>
-                            <a class="dropdown-item" href="#"><i class="fal fa-sign-out"></i> Logout</a>
+                            <a class="dropdown-item" href="#"><i class="fal fa-file-alt"></i> My Posts</a>
+                            <a class="dropdown-item" href="{{ url_for('logout') }}"><i class="fal fa-sign-out"></i> Logout</a>
                         </div>
                     </div>
                 {% else %}

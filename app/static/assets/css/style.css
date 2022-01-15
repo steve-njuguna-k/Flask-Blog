@@ -52,34 +52,40 @@ a:hover {
 }
 
 .btn-primary, .btn-primary:active, .btn-primary:focus{
-    background-color: #f1f5fa;
-    border-color: #fff;
-    color: #6d81f5;
+    background-color: #6d81f5;
+    border-color: #6d81f5;
+    color: #fff;
     border-radius: 9px;
     margin-top: 4px;
-    padding: 9px;
+    padding-top: 9px;
+	padding-bottom: 9px;
+	padding-left: 25px;
+	padding-right: 25px;
 }
 
 .btn-primary:hover{
     background-color: #6d81f5;
-    border-color: #fff;
+    border-color: #6d81f5;
     color: #fff;
     border-radius: 9px;
     margin-top: 4px;
-    padding: 9px;
+    padding-top: 9px;
+	padding-bottom: 9px;
+	padding-left: 25px;
+	padding-right: 25px;
 }
 
 .btn-link{
-    color: #6d81f5;
+    color: #000;
 	border-radius: 9px;
-    margin-top: 4px;
+    margin-top: 1px;
     padding: 9px;
 }
 
 .btn-link:hover{
     color: #6d81f5;
 	border-radius: 9px;
-    margin-top: 4px;
+    margin-top: 1px;
     padding: 9px;
 }
 
@@ -282,4 +288,8 @@ a:hover {
 
 .alert{
 	margin: 10px;
+}
+
+.dropdown-item:focus, .dropdown-item:active{
+	background-color: #6d81f5;
 }

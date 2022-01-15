@@ -7,4 +7,199 @@
 
 {% block content %}
 
+<div class="container-fluid main-section">
+	<div class="row">
+		<div class="col-sm-3 left-pane">
+			<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+				<h4><b>Main Menu</b></h4>
+				<a class="nav-link active" data-toggle="pill" href="#v-pills-home" role="tab">Home</a> 
+				<a class="nav-link" data-toggle="pill" href="#v-pills-profile" role="tab">About Us</a> 
+				<a class="nav-link" data-toggle="pill" href="#v-pills-settings" role="tab">Community Guidlines</a>
+				<a class="nav-link" data-toggle="pill" href="#v-pills-settings" role="tab">Privacy Policy</a>
+				<a class="nav-link" data-toggle="pill" href="#v-pills-settings" role="tab">Cookie Policy</a>
+				<a class="nav-link" data-toggle="pill" href="#v-pills-settings" role="tab">Terms & Conditions</a>
+				<br>
+				<h4><b>Categories</b></h4>
+				<a class="nav-link" data-toggle="pill" href="#v-pills-home" role="tab">Software Development</a> 
+				<a class="nav-link" data-toggle="pill" href="#v-pills-profile" role="tab">Career Talk</a> 
+				<a class="nav-link" data-toggle="pill" href="#v-pills-messages" role="tab">Cloud & DevOps</a> 
+				<a class="nav-link" data-toggle="pill" href="#v-pills-settings" role="tab">AI & Merchine Learning</a> 
+				<a class="nav-link" data-toggle="pill" href="#v-pills-payment" role="tab">Cryptocurrency</a>
+				<a class="nav-link" data-toggle="pill" href="#v-pills-home" role="tab">Robotics</a> 
+				<a class="nav-link" data-toggle="pill" href="#v-pills-profile" role="tab">Augmented & Virtual Reality</a>  
+			</div>
+		</div>
+		<div class="col-sm-6 center-pane">
+			<div class="tab-pills">
+				<ul class="nav nav-pills">
+					<li class="nav-item">
+						<a class="nav-link active" data-toggle="pill" href="#flamingo" role="tab" aria-controls="pills-flamingo" aria-selected="true">Relevant</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" data-toggle="pill" href="#cuckoo" role="tab" aria-controls="pills-cuckoo" aria-selected="false">Latest</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" data-toggle="pill" href="#ostrich" role="tab" aria-controls="pills-ostrich" aria-selected="false">Top</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" data-toggle="pill" href="#tropicbird" role="tab" aria-controls="pills-tropicbird" aria-selected="false">Sponsored</a>
+					</li>
+				</ul>
+				<div class="tab-content mt-3">
+					<div class="tab-pane fade show active" id="flamingo" role="tabpanel" aria-labelledby="flamingo-tab">
+						<a href="#">
+							<div class="card">
+								<div class="card-body">
+									<div class="d-flex flex-row user-info">
+										<img class="rounded-circle" src="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" height="45" width="45">
+										<div class="d-flex flex-column justify-content-start ml-2">
+											<span class="d-block font-weight-bold name">Marry Andrews</span>
+											<span class="date text-black-50">Shared - Jan 2020</span>
+										</div>
+									</div>
+									<h2 class="card-title"><b>Quicksort Algorithm: Explained With Diagrams and Javascript</b></h2>
+									<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+									<p class="card-text text-muted tags">
+										<span class="badge badge-secondary">#html</span>
+										<span class="badge badge-secondary">#css</span>
+										<span class="badge badge-secondary">#js</span>
+										<span class="badge badge-secondary">#flask</span>
+										<span class="badge badge-secondary">#python</span>
+										<span class="badge badge-secondary">#bootstrap</span>
+									</p>
+									<a class="float-right" href="#">
+									  <button class="btn btn-link btn-sm"><i class="far fa-comment-alt"></i> Comment</button>
+									</a>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="tab-pane fade" id="cuckoo" role="tabpanel" aria-labelledby="profile-tab">
+						<a href="#">
+							<div class="card">
+								<div class="card-body">
+									<div class="d-flex flex-row user-info">
+										<img class="rounded-circle" src="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" height="45" width="45">
+										<div class="d-flex flex-column justify-content-start ml-2">
+											<span class="d-block font-weight-bold name">Marry Andrews</span>
+											<span class="date text-black-50">Shared - Jan 2020</span>
+										</div>
+									</div>
+									<h2 class="card-title"><b>Quicksort Algorithm: Explained With Diagrams and Javascript</b></h2>
+									<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+									<p class="card-text text-muted tags">
+										<span class="badge badge-secondary">#html</span>
+										<span class="badge badge-secondary">#css</span>
+										<span class="badge badge-secondary">#js</span>
+										<span class="badge badge-secondary">#flask</span>
+										<span class="badge badge-secondary">#python</span>
+										<span class="badge badge-secondary">#bootstrap</span>
+									</p>
+									<a class="float-right" href="#">
+									  <button class="btn btn-link btn-sm"><i class="far fa-comment-alt"></i> Comment</button>
+									</a>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="tab-pane fade" id="ostrich" role="tabpanel" aria-labelledby="ostrich-tab">
+						<a href="#">
+							<div class="card">
+								<div class="card-body">
+									<div class="d-flex flex-row user-info">
+										<img class="rounded-circle" src="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" height="45" width="45">
+										<div class="d-flex flex-column justify-content-start ml-2">
+											<span class="d-block font-weight-bold name">Marry Andrews</span>
+											<span class="date text-black-50">Shared - Jan 2020</span>
+										</div>
+									</div>
+									<h2 class="card-title"><b>Quicksort Algorithm: Explained With Diagrams and Javascript</b></h2>
+									<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+									<p class="card-text text-muted tags">
+										<span class="badge badge-secondary">#html</span>
+										<span class="badge badge-secondary">#css</span>
+										<span class="badge badge-secondary">#js</span>
+										<span class="badge badge-secondary">#flask</span>
+										<span class="badge badge-secondary">#python</span>
+										<span class="badge badge-secondary">#bootstrap</span>
+									</p>
+									<a class="float-right" href="#">
+									  <button class="btn btn-link btn-sm"><i class="far fa-comment-alt"></i> Comment</button>
+									</a>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="tab-pane fade" id="tropicbird" role="tabpanel" aria-labelledby="tropicbird-tab">
+						<a href="#">
+							<div class="card">
+								<div class="card-body">
+									<div class="d-flex flex-row user-info">
+										<img class="rounded-circle" src="https://images.pexels.com/photos/771742/pexels-photo-771742.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" height="45" width="45">
+										<div class="d-flex flex-column justify-content-start ml-2">
+											<span class="d-block font-weight-bold name">Marry Andrews</span>
+											<span class="date text-black-50">Shared - Jan 2020</span>
+										</div>
+									</div>
+									<h2 class="card-title"><b>Quicksort Algorithm: Explained With Diagrams and Javascript</b></h2>
+									<p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+									<p class="card-text text-muted tags">
+										<span class="badge badge-secondary">#html</span>
+										<span class="badge badge-secondary">#css</span>
+										<span class="badge badge-secondary">#js</span>
+										<span class="badge badge-secondary">#flask</span>
+										<span class="badge badge-secondary">#python</span>
+										<span class="badge badge-secondary">#bootstrap</span>
+									</p>
+									<a class="float-right" href="#">
+									  <button class="btn btn-link btn-sm"><i class="far fa-comment-alt"></i> Comment</button>
+									</a>
+								</div>
+							</div>
+						</a>
+					</div>
+				</div>        
+			</div>
+			{% block footer %}
+				<div class="container">
+					<div id="footer">
+						<p class="text-center">© 2022 Steve Njuguna</p>
+					</div>
+				</div>
+			{% endblock %}
+		</div>
+		<div class="col-sm-3 right-pane">
+			<h4><b>Tech News</b></h4>
+			<div class="card">
+				<div class="card-body">
+				  <h5 class="card-title"><b>Special title treatment</b></h5>
+				  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+				  <a href="#" class="btn btn-primary">Go somewhere</a>
+				</div>
+			</div>
+			<br>
+			<h4><b>Tech News</b></h4>
+			<div class="card">
+				<ul class="list-group pull-left">
+					<li class="list-group-item">
+					  <h5>Jen &nbsp; &nbsp;<span class="badge pull-right">100%</span></h5>
+					</li>
+					<li class="list-group-item">
+					  <h5>Dezi &nbsp; &nbsp;<span class="badge pull-right">100%</span></h5>
+					</li>
+					<li class="list-group-item">
+					  <h5>Eli &nbsp; &nbsp;<span class="badge pull-right">100%</span></h5>
+					</li>
+					<li class="list-group-item">
+					  <h5>Mojo &nbsp; &nbsp;<span class="badge pull-right">83%</span></h5>
+					</li>
+					<li class="list-group-item">
+					  <h5>Myself &nbsp; &nbsp;<span class="badge pull-right">100%</span></h5>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
 {% endblock %}

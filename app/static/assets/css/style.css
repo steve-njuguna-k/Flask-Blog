@@ -87,6 +87,7 @@ a:hover {
 	border-radius: 9px;
     margin-top: 1px;
     padding: 9px;
+	text-decoration: none;
 }
 
 .logo{
@@ -292,4 +293,71 @@ a:hover {
 
 .dropdown-item:focus, .dropdown-item:active{
 	background-color: #6d81f5;
+}
+
+.main-section{
+	margin-top: 90px;
+}
+
+.tab-pills{
+	margin-bottom: 20px;
+}
+
+.nav-pills .nav-link {
+    border-radius: 9px;
+	color: #000;
+}
+
+.nav-link {
+    display: block;
+    padding: 0.5rem 1rem;
+	color: #6d81f5;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #6d81f5;
+    background-color: #efefef;
+}
+
+.nav-link:hover {
+    color: #fff;
+    background-color: #6d81f5;
+	border-radius: 9px;
+}
+
+.card{
+	margin-bottom: 10px;
+	border-radius: 9px;
+	border-color: 2px solid rgba(240, 246, 252, 0.1);
+}
+
+.btn-dark{
+	padding-left: 20px;
+	padding-right: 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+.card-title{
+	color: #000;
+}
+
+.card-title:hover{
+	color: #6d81f5;
+}
+
+.tags{
+	padding-bottom: 15px;
+}
+
+.user-info{
+	margin-bottom: 5px;
+}
+
+.rounded-circle{
+	border-radius: 50px;
+}
+
+.badge-secondary{
+	padding: 7px;
 }

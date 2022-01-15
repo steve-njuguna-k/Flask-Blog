@@ -179,3 +179,84 @@ a:hover {
 	padding-bottom: 15px;
 	text-align: center;
 }
+
+.login-form {
+	width: 450px;
+	margin: 30px auto;
+}
+
+.login-form form {
+	color: #000 ;
+	border-radius: 9px;
+	margin-bottom: 10px;
+	background: #fff;
+	box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+	padding: 30px;
+}
+
+.login-form h1  {
+	color: #000 ;
+	font-weight: bold;
+	margin-top: 0;
+}
+
+.login-form hr  {
+	margin: 0 -30px 20px;
+} 
+
+.login-form .form-group {
+	margin-bottom: 20px;
+}
+
+.login-form input[type="checkbox"] {
+	margin-top: 3px;
+}
+
+.login-form .row div:first-child {
+	padding-right: 10px;
+}
+
+.login-form .row div:last-child {
+	padding-left: 10px;
+}
+
+.login-form .btn {        
+	font-size: 16px;
+	font-weight: bold;
+	background: #6d81f5 ;
+	border: none;
+	min-height: 50px;
+    color: #fff;
+}
+
+.login-form .btn:hover, .login-form .btn:focus {
+	background: #6d81f5 !important;
+	outline: none;
+	min-height: 50px;
+    color: #fff;
+}
+
+.login-form a {
+	color: #6d81f5;
+	text-decoration: none;
+}
+
+.login-form a:hover {
+	text-decoration: none;
+    color: #6d81f5;
+}
+
+.login-form form a {
+	color: #6d81f5;
+	text-decoration: none;
+}	
+
+.login-form form a:hover {
+	text-decoration: none;
+    color: #6d81f5;
+}
+
+.login-form .hint-text  {
+	padding-bottom: 15px;
+	text-align: center;
+}

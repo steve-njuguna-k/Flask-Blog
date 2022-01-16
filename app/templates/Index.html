@@ -88,7 +88,7 @@
 										<button class="btn btn-outline-warning btn-sm"><i class="far fa-edit"></i> Edit</button>
 									</a>
 									<a href="#">
-										<button class="btn btn-outline-danger btn-sm"><i class="far fa-trash"></i> Delete</button>
+										<button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#exampleModal"><i class="far fa-trash"></i> Delete</button>
 									</a>
 									{% endif %}
 									<a class="float-right" href="#">
@@ -120,6 +120,14 @@
 										<span class="badge badge-secondary">{{ tag.name }}</span>
 										{% endfor %}
 									</p>
+									{% if current_user.id == post.id %}
+									<a class="float-left" style="margin-right: 5px;" href="/post/{{post.id}}/edit">
+										<button class="btn btn-outline-warning btn-sm"><i class="far fa-edit"></i> Edit</button>
+									</a>
+									<a href="/post/{{post.id}}/delete">
+										<button class="btn btn-outline-danger btn-sm"><i class="far fa-trash"></i> Delete</button>
+									</a>
+									{% endif %}
 									<a class="float-right" href="#">
 									  <button class="btn btn-outline-primary btn-sm"><i class="far fa-comment-alt"></i> Comment</button>
 									</a>
@@ -149,6 +157,14 @@
 										<span class="badge badge-secondary">{{ tag.name }}</span>
 										{% endfor %}
 									</p>
+									{% if current_user.id == post.id %}
+									<a class="float-left" style="margin-right: 5px;" href="/post/{{post.id}}/edit">
+										<button class="btn btn-outline-warning btn-sm"><i class="far fa-edit"></i> Edit</button>
+									</a>
+									<a href="/post/{{post.id}}/delete">
+										<button class="btn btn-outline-danger btn-sm"><i class="far fa-trash"></i> Delete</button>
+									</a>
+									{% endif %}
 									<a class="float-right" href="#">
 									  <button class="btn btn-outline-primary btn-sm"><i class="far fa-comment-alt"></i> Comment</button>
 									</a>
@@ -178,6 +194,14 @@
 										<span class="badge badge-secondary">{{ tag.name }}</span>
 										{% endfor %}
 									</p>
+									{% if current_user.id == post.id %}
+									<a class="float-left" style="margin-right: 5px;" href="/post/{{post.id}}/edit">
+										<button class="btn btn-outline-warning btn-sm"><i class="far fa-edit"></i> Edit</button>
+									</a>
+									<a href="/post/{{post.id}}/delete">
+										<button class="btn btn-outline-danger btn-sm"><i class="far fa-trash"></i> Delete</button>
+									</a>
+									{% endif %}
 									<a class="float-right" href="#">
 									  <button class="btn btn-outline-primary btn-sm"><i class="far fa-comment-alt"></i> Comment</button>
 									</a>
@@ -207,6 +231,14 @@
 										<span class="badge badge-secondary">{{ tag.name }}</span>
 										{% endfor %}
 									</p>
+									{% if current_user.id == post.id %}
+									<a class="float-left" style="margin-right: 5px;" href="/post/{{post.id}}/edit">
+										<button class="btn btn-outline-warning btn-sm"><i class="far fa-edit"></i> Edit</button>
+									</a>
+									<a href="/post/{{post.id}}/delete">
+										<button class="btn btn-outline-danger btn-sm"><i class="far fa-trash"></i> Delete</button>
+									</a>
+									{% endif %}
 									<a class="float-right" href="#">
 									  <button class="btn btn-outline-primary btn-sm"><i class="far fa-comment-alt"></i> Comment</button>
 									</a>
@@ -257,5 +289,26 @@
 		</div>
 	</div>
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" data-backdrop="static" data-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title text-danger" id="exampleModalLabel">Delete Blog Post</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+				</div>
+			<div class="modal-body">
+				<p>Are you you want to delete this post? <span class="text-danger">(This can't be undone)</span></p>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-danger btn-sm"><i class="far fa-trash"></i> Delete</button>
+			</div>
+		</div>
+	</div>
+  </div>
 
 {% endblock %}

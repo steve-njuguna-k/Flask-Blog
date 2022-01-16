@@ -526,3 +526,31 @@ a:hover {
     margin-right: auto;
     margin-left: auto;
 }
+
+.text-danger{
+	color: #dd0000!important;
+}
+
+.post-form .btn-danger{
+	color: #fff;
+    background-color: #dd0000!important;
+	border-radius: .25rem;
+}
+
+.post-form .btn-danger:hover{
+	color: #fff;
+    background-color: #dd0000!important;
+	border-radius: .25rem;
+}
+
+.btn-danger{
+	color: #fff;
+    background-color: #dd0000!important;
+	border-radius: .25rem;
+}
+
+.btn-danger:hover{
+	color: #fff;
+    background-color: #dd0000!important;
+	border-radius: .25rem;
+}

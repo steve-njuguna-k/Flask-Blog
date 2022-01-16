@@ -172,3 +172,14 @@ def edit_post(id):
     else:
         flash('⚠️ You Are Not Authorized To Edit This Post! You Are Not The Author', 'danger')
         return redirect(url_for('home'))
+
+@app.route('/post/<id>/delete', methods=['POST','GET'])
+@login_required
+def delete_post(id):
+    post = Posts.query.get_or_404(id)
+
+    if current_user.id == post.id:
+        return render_template(post = post)
+    else:
+        flash('⚠️ You Are Not Authorized To Edit This Post! You Are Not The Author', 'danger')
+        return redirect(url_for('home'))

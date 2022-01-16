@@ -11,7 +11,8 @@ bcrypt = Bcrypt(app)
 
 @app.route('/')
 def home():
-    return render_template('Index.html')
+    posts = Posts.query.all()
+    return render_template('Index.html', posts = posts)
 
 @app.route('/register', methods = ['GET', 'POST'])
 def register():
@@ -135,3 +136,10 @@ def add_tags(tag):
        new_tag = Tags()
        new_tag.name = tag.lower()
        return new_tag
+
+@app.route('/post/<id>', methods=['POST','GET'])
+@login_required
+def post(id):
+    post = Posts.query.filter_by(id = id).first()
+
+    return render_template('Post.html', post = post)

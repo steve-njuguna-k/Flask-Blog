@@ -17,14 +17,28 @@ class RegisterForm(FlaskForm):
     submit = SubmitField(label=('Sign Up'))
 
 class BlogPostsForm(FlaskForm):
-    title = StringField(label='Post Title', validators=[DataRequired(), Length(min=3, max=255,  message='⚠️ Title length must be between %(min)d and %(max)d characters!')], render_kw={"placeholder": "Post Title"})
-    description = TextAreaField(label='Description',validators=[DataRequired(), Length(min=6, max=255,  message='⚠️ Pitch length must be between %(min)d and %(max)d characters!')], render_kw={"placeholder": "Content", 'rows': 10})
+    title = StringField(label='Post Title', validators=[DataRequired(), Length(min=3, max=100,  message='⚠️ Title length must be between %(min)d and %(max)d characters!')], render_kw={"placeholder": "Post Title"})
+    description = TextAreaField(label='Description',validators=[DataRequired(), Length(min=6, max=5000,  message='⚠️ Pitch length must be between %(min)d and %(max)d characters!')], render_kw={"placeholder": "Content", 'rows': 20})
     category = SelectField(label='Select Category',choices=[
-        ('Creative Pitches', 'Creative Pitches'),
-        ('Business Pitches', 'Business Pitches'),
-        ('Interview Pitches', 'Interview Pitches'),
-        ('Sales Pitches', 'Sales Pitches'),
-        ('Product Pitches', 'Product Pitches')
+        ('AI', 'AI'),
+        ('Big Data', 'Big Data'),
+        ('Blockchain', 'Blockchain'),
+        ('Career Development', 'Career Development'),
+        ('Cloud Computing', 'Cloud Computing'),
+        ('Cybersecurity', 'Cybersecurity'),
+        ('Design + UX', 'Design + UX'),
+        ('DevOps', 'DevOps'),
+        ('E-commerce', 'E-commerce'),
+        ('Fintech', 'Fintech'),
+        ('Greentech', 'Greentech'),
+        ('IoT: The Internet of Things', 'IoT: The Internet of Things'),
+        ('Machine Learning', 'Machine Learning'),
+        ('Mobile Technology', 'Mobile Technology'),
+        ('Robotics', 'Robotics'),
+        ('SaaS', 'SaaS'),
+        ('Software Development', 'Software Development'),
+        ('Virtual Reality', 'Vitual Reality'),
+        ('Wearables', 'Wearables')
     ], render_kw={"placeholder": "Choose Category"})
     tags = StringField(label='Tags', validators=[DataRequired(), Length(min=3, max=10,  message='⚠️ Tag length must be between %(min)d and %(max)d characters!')], render_kw={"placeholder": "Tags"})
     submit = SubmitField('Submit')

@@ -83,17 +83,40 @@
 										<span class="badge badge-secondary">{{ tag.name }}</span>
 										{% endfor %}
 									</p>
-									{% if current_user.id == post.id %}
+									{% if current_user.id == post.user_id %}
 									<a class="float-left" style="margin-right: 5px;" href="/post/{{post.id}}/edit">
 										<button class="btn btn-outline-warning btn-sm"><i class="far fa-edit"></i> Edit</button>
 									</a>
 									<a href="#">
-										<button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#exampleModal"><i class="far fa-trash"></i> Delete</button>
+										<button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#exampleModal{{post.id}}"><i class="far fa-trash"></i> Delete</button>
 									</a>
 									{% endif %}
 									<a class="float-right" href="#">
 									  <button class="btn btn-outline-primary btn-sm"><i class="far fa-comment-alt"></i> Comment</button>
 									</a>
+								</div>
+							</div>
+
+							<!-- Modal -->
+							<div class="modal fade" id="exampleModal{{post.id}}" tabindex="-1" data-backdrop="static" data-keyboard="false" aria-labelledby="exampleModalLabel{{post.id}}" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title text-danger" id="exampleModalLabel{{post.id}}">Delete Blog Post</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+											</div>
+										<div class="modal-body">
+											<p>Are you you want to delete the post? <span class="text-danger">(This can't be undone)</span></p>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+											<a href="/post/{{ post.id }}/delete">
+												<button type="button" class="btn btn-danger btn-sm"><i class="far fa-trash"></i> Delete</button>
+											</a>
+										</div>
+									</div>
 								</div>
 							</div>
 						{% endfor %}
@@ -120,17 +143,40 @@
 										<span class="badge badge-secondary">{{ tag.name }}</span>
 										{% endfor %}
 									</p>
-									{% if current_user.id == post.id %}
+									{% if current_user.id == post.user_id %}
 									<a class="float-left" style="margin-right: 5px;" href="/post/{{post.id}}/edit">
 										<button class="btn btn-outline-warning btn-sm"><i class="far fa-edit"></i> Edit</button>
 									</a>
-									<a href="/post/{{post.id}}/delete">
-										<button class="btn btn-outline-danger btn-sm"><i class="far fa-trash"></i> Delete</button>
+									<a href="#">
+										<button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#exampleModal{{post.id}}"><i class="far fa-trash"></i> Delete</button>
 									</a>
 									{% endif %}
 									<a class="float-right" href="#">
 									  <button class="btn btn-outline-primary btn-sm"><i class="far fa-comment-alt"></i> Comment</button>
 									</a>
+								</div>
+							</div>
+
+							<!-- Modal -->
+							<div class="modal fade" id="exampleModal{{post.id}}" tabindex="-1" data-backdrop="static" data-keyboard="false" aria-labelledby="exampleModalLabel{{post.id}}" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title text-danger" id="exampleModalLabel{{post.id}}">Delete Blog Post</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+											</div>
+										<div class="modal-body">
+											<p>Are you you want to delete the post? <span class="text-danger">(This can't be undone)</span></p>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+											<a href="/post/{{ post.id }}/delete">
+												<button type="button" class="btn btn-danger btn-sm"><i class="far fa-trash"></i> Delete</button>
+											</a>
+										</div>
+									</div>
 								</div>
 							</div>
 						{% endfor %}
@@ -151,23 +197,46 @@
 									<a href="/post/{{post.id}}">
 										<h3 class="card-title"><b>{{ post.title }}</b></h3>
 									</a>
-									<p class="card-text text-muted">{{ post.description[:250]| safe + " ..."  }}</p>
+									<p class="card-text text-muted">{{ post.description[:250]|safe + " ..." }}</p>
 									<p class="card-text text-muted tags">
 										{% for tag in post.tags %}
 										<span class="badge badge-secondary">{{ tag.name }}</span>
 										{% endfor %}
 									</p>
-									{% if current_user.id == post.id %}
+									{% if current_user.id == post.user_id %}
 									<a class="float-left" style="margin-right: 5px;" href="/post/{{post.id}}/edit">
 										<button class="btn btn-outline-warning btn-sm"><i class="far fa-edit"></i> Edit</button>
 									</a>
-									<a href="/post/{{post.id}}/delete">
-										<button class="btn btn-outline-danger btn-sm"><i class="far fa-trash"></i> Delete</button>
+									<a href="#">
+										<button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#exampleModal{{post.id}}"><i class="far fa-trash"></i> Delete</button>
 									</a>
 									{% endif %}
 									<a class="float-right" href="#">
 									  <button class="btn btn-outline-primary btn-sm"><i class="far fa-comment-alt"></i> Comment</button>
 									</a>
+								</div>
+							</div>
+
+							<!-- Modal -->
+							<div class="modal fade" id="exampleModal{{post.id}}" tabindex="-1" data-backdrop="static" data-keyboard="false" aria-labelledby="exampleModalLabel{{post.id}}" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title text-danger" id="exampleModalLabel{{post.id}}">Delete Blog Post</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+											</div>
+										<div class="modal-body">
+											<p>Are you you want to delete the post? <span class="text-danger">(This can't be undone)</span></p>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+											<a href="/post/{{ post.id }}/delete">
+												<button type="button" class="btn btn-danger btn-sm"><i class="far fa-trash"></i> Delete</button>
+											</a>
+										</div>
+									</div>
 								</div>
 							</div>
 						{% endfor %}
@@ -188,23 +257,46 @@
 									<a href="/post/{{post.id}}">
 										<h3 class="card-title"><b>{{ post.title }}</b></h3>
 									</a>
-									<p class="card-text text-muted">{{ post.description[:250]| safe + " ..." }}</p>
+									<p class="card-text text-muted">{{ post.description[:250]|safe + " ..." }}</p>
 									<p class="card-text text-muted tags">
 										{% for tag in post.tags %}
 										<span class="badge badge-secondary">{{ tag.name }}</span>
 										{% endfor %}
 									</p>
-									{% if current_user.id == post.id %}
+									{% if current_user.id == post.user_id %}
 									<a class="float-left" style="margin-right: 5px;" href="/post/{{post.id}}/edit">
 										<button class="btn btn-outline-warning btn-sm"><i class="far fa-edit"></i> Edit</button>
 									</a>
-									<a href="/post/{{post.id}}/delete">
-										<button class="btn btn-outline-danger btn-sm"><i class="far fa-trash"></i> Delete</button>
+									<a href="#">
+										<button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#exampleModal{{post.id}}"><i class="far fa-trash"></i> Delete</button>
 									</a>
 									{% endif %}
 									<a class="float-right" href="#">
 									  <button class="btn btn-outline-primary btn-sm"><i class="far fa-comment-alt"></i> Comment</button>
 									</a>
+								</div>
+							</div>
+
+							<!-- Modal -->
+							<div class="modal fade" id="exampleModal{{post.id}}" tabindex="-1" data-backdrop="static" data-keyboard="false" aria-labelledby="exampleModalLabel{{post.id}}" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title text-danger" id="exampleModalLabel{{post.id}}">Delete Blog Post</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+											</div>
+										<div class="modal-body">
+											<p>Are you you want to delete the post? <span class="text-danger">(This can't be undone)</span></p>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+											<a href="/post/{{ post.id }}/delete">
+												<button type="button" class="btn btn-danger btn-sm"><i class="far fa-trash"></i> Delete</button>
+											</a>
+										</div>
+									</div>
 								</div>
 							</div>
 						{% endfor %}
@@ -225,23 +317,46 @@
 									<a href="/post/{{post.id}}">
 										<h3 class="card-title"><b>{{ post.title }}</b></h3>
 									</a>
-									<p class="card-text text-muted">{{ post.description[:250]| safe + " ..." }}</p>
+									<p class="card-text text-muted">{{ post.description[:250]|safe + " ..." }}</p>
 									<p class="card-text text-muted tags">
 										{% for tag in post.tags %}
 										<span class="badge badge-secondary">{{ tag.name }}</span>
 										{% endfor %}
 									</p>
-									{% if current_user.id == post.id %}
+									{% if current_user.id == post.user_id %}
 									<a class="float-left" style="margin-right: 5px;" href="/post/{{post.id}}/edit">
 										<button class="btn btn-outline-warning btn-sm"><i class="far fa-edit"></i> Edit</button>
 									</a>
-									<a href="/post/{{post.id}}/delete">
-										<button class="btn btn-outline-danger btn-sm"><i class="far fa-trash"></i> Delete</button>
+									<a href="#">
+										<button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#exampleModal{{post.id}}"><i class="far fa-trash"></i> Delete</button>
 									</a>
 									{% endif %}
 									<a class="float-right" href="#">
 									  <button class="btn btn-outline-primary btn-sm"><i class="far fa-comment-alt"></i> Comment</button>
 									</a>
+								</div>
+							</div>
+
+							<!-- Modal -->
+							<div class="modal fade" id="exampleModal{{post.id}}" tabindex="-1" data-backdrop="static" data-keyboard="false" aria-labelledby="exampleModalLabel{{post.id}}" aria-hidden="true">
+								<div class="modal-dialog modal-dialog-centered">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title text-danger" id="exampleModalLabel{{post.id}}">Delete Blog Post</h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+											</div>
+										<div class="modal-body">
+											<p>Are you you want to delete the post? <span class="text-danger">(This can't be undone)</span></p>
+										</div>
+										<div class="modal-footer">
+											<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+											<a href="/post/{{ post.id }}/delete">
+												<button type="button" class="btn btn-danger btn-sm"><i class="far fa-trash"></i> Delete</button>
+											</a>
+										</div>
+									</div>
 								</div>
 							</div>
 						{% endfor %}
@@ -289,26 +404,5 @@
 		</div>
 	</div>
 </div>
-
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" data-backdrop="static" data-keyboard="false" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title text-danger" id="exampleModalLabel">Delete Blog Post</h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-				</div>
-			<div class="modal-body">
-				<p>Are you you want to delete this post? <span class="text-danger">(This can't be undone)</span></p>
-			</div>
-			<div class="modal-footer">
-				<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-danger btn-sm"><i class="far fa-trash"></i> Delete</button>
-			</div>
-		</div>
-	</div>
-  </div>
 
 {% endblock %}

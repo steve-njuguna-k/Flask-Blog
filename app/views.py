@@ -159,7 +159,7 @@ def edit_post(id):
        
         db.session.add(post)
         db.session.commit()
-        flash ('✅ New Post Successfully Updated!', 'success')
+        flash ('✅ The Post Has Been Successfully Updated!', 'success')
         return redirect(url_for('edit_post', id = id))
 
     elif request.method == 'GET':
@@ -167,19 +167,22 @@ def edit_post(id):
         form.description.data = post.description
         form.category.data = post.category
 
-    if current_user.id == post.id:
-        return render_template('Edit Post.html', post = post, form = form)
-    else:
+    if current_user.id != post.user_id:
         flash('⚠️ You Are Not Authorized To Edit This Post! You Are Not The Author', 'danger')
         return redirect(url_for('home'))
+    
+    return render_template('Edit Post.html', post = post, form = form)
 
-@app.route('/post/<id>/delete', methods=['POST','GET'])
+@app.route('/post/<id>/delete', methods=['GET', 'POST'])
 @login_required
 def delete_post(id):
     post = Posts.query.get_or_404(id)
 
-    if current_user.id == post.id:
-        return render_template(post = post)
-    else:
-        flash('⚠️ You Are Not Authorized To Edit This Post! You Are Not The Author', 'danger')
+    if current_user.id != post.user_id:
+        flash('⚠️ You Are Not Authorized To Delete This Post! You Are Not The Author', 'danger')
         return redirect(url_for('home'))
+    
+    db.session.delete(post)
+    db.session.commit()
+    flash ('✅ The Post Has Been Successfully Delete!', 'success')
+    return redirect(url_for('home', id = id))

@@ -4,7 +4,7 @@ from flask import render_template, flash, redirect, request, url_for
 from .email import send_email
 from .models import Comments, Tags, User, db, Posts
 from flask_login import current_user, login_user, logout_user, login_required
-from .forms import CommentsForm, LoginForm, RegisterForm, BlogPostsForm
+from .forms import CommentsForm, LoginForm, RegisterForm, BlogPostsForm, EditBlogPostsForm
 from flask_bcrypt import Bcrypt
 from .token import confirm_token, generate_confirmation_token
 bcrypt = Bcrypt(app)
@@ -147,8 +147,25 @@ def post(id):
 @app.route('/post/<id>/edit', methods=['POST','GET'])
 @login_required
 def edit_post(id):
-    form = BlogPostsForm()
-    post = Posts.query.filter_by(id = id).first()
+    form = EditBlogPostsForm(request.form)
+    post = Posts.query.get_or_404(id)
+
+    if form.validate_on_submit():
+        post.title = form.title.data
+        post.description = form.description.data
+        post.category = form.category.data
+            
+        post.user_id = current_user._get_current_object().id
+       
+        db.session.add(post)
+        db.session.commit()
+        flash ('✅ New Post Successfully Updated!', 'success')
+        return redirect(url_for('edit_post', id = id))
+
+    elif request.method == 'GET':
+        form.title.data = post.title
+        form.description.data = post.description
+        form.category.data = post.category
 
     if current_user.id == post.id:
         return render_template('Edit Post.html', post = post, form = form)

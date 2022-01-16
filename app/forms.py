@@ -44,6 +44,32 @@ class BlogPostsForm(FlaskForm):
     tags = StringField(label='Tags', validators=[DataRequired(), Length(min=3, max=50,  message='⚠️ Tag length must be between %(min)d and %(max)d characters!')], render_kw={"placeholder": "Tags (Add up to 5 short tags)"})
     submit = SubmitField('Submit')
 
+class EditBlogPostsForm(FlaskForm):
+    title = StringField(label='Post Title', validators=[DataRequired(), Length(min=3, max=100,  message='⚠️ Title length must be between %(min)d and %(max)d characters!')], render_kw={"placeholder": "New Post Title Here..."})
+    description = CKEditorField(label='Description',validators=[DataRequired(), Length(min=6, max=10000,  message='⚠️ Content length must be between %(min)d and %(max)d characters!')], render_kw={"placeholder": "Write Your Post Content Here...", 'rows': 20})
+    category = SelectField(label='Select Category',choices=[
+        ('AI', 'AI'),
+        ('Big Data', 'Big Data'),
+        ('Blockchain', 'Blockchain'),
+        ('Career Development', 'Career Development'),
+        ('Cloud Computing', 'Cloud Computing'),
+        ('Cybersecurity', 'Cybersecurity'),
+        ('Design + UX', 'Design + UX'),
+        ('DevOps', 'DevOps'),
+        ('E-commerce', 'E-commerce'),
+        ('Fintech', 'Fintech'),
+        ('Greentech', 'Greentech'),
+        ('IoT: The Internet of Things', 'IoT: The Internet of Things'),
+        ('Machine Learning', 'Machine Learning'),
+        ('Mobile Technology', 'Mobile Technology'),
+        ('Robotics', 'Robotics'),
+        ('SaaS', 'SaaS'),
+        ('Software Development', 'Software Development'),
+        ('Virtual Reality', 'Vitual Reality'),
+        ('Wearables', 'Wearables')
+    ], render_kw={"placeholder": "Choose Category"})
+    submit = SubmitField('Submit')
+
 class CommentsForm(FlaskForm):
     comment = TextAreaField(label = 'Comment',validators=[DataRequired(), Length(min=6, max=255,  message='⚠️ Comment length must be between %(min)d and %(max)d characters!')], render_kw={"placeholder": "Your Comment", 'rows': 5})
     submit= SubmitField('Submit')

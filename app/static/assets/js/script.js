@@ -7,3 +7,7 @@ $(".toggle-password").click(function() {
         input.attr("type", "password");
     }
 });
+
+$('#create').click(function(){ 
+    $("#addPostForm")[0].reset();
+});

@@ -17,8 +17,8 @@ class RegisterForm(FlaskForm):
     submit = SubmitField(label=('Sign Up'))
 
 class BlogPostsForm(FlaskForm):
-    title = StringField(label='Post Title', validators=[DataRequired(), Length(min=3, max=100,  message='⚠️ Title length must be between %(min)d and %(max)d characters!')], render_kw={"placeholder": "Post Title"})
-    description = TextAreaField(label='Description',validators=[DataRequired(), Length(min=6, max=5000,  message='⚠️ Pitch length must be between %(min)d and %(max)d characters!')], render_kw={"placeholder": "Content", 'rows': 20})
+    title = StringField(label='Post Title', validators=[DataRequired(), Length(min=3, max=100,  message='⚠️ Title length must be between %(min)d and %(max)d characters!')], render_kw={"placeholder": "New Post Title Here..."})
+    description = TextAreaField(label='Description',validators=[DataRequired(), Length(min=6, max=5000,  message='⚠️ Pitch length must be between %(min)d and %(max)d characters!')], render_kw={"placeholder": "Write Your Post Content Here...", 'rows': 20})
     category = SelectField(label='Select Category',choices=[
         ('AI', 'AI'),
         ('Big Data', 'Big Data'),
@@ -40,7 +40,7 @@ class BlogPostsForm(FlaskForm):
         ('Virtual Reality', 'Vitual Reality'),
         ('Wearables', 'Wearables')
     ], render_kw={"placeholder": "Choose Category"})
-    tags = StringField(label='Tags', validators=[DataRequired(), Length(min=3, max=10,  message='⚠️ Tag length must be between %(min)d and %(max)d characters!')], render_kw={"placeholder": "Tags"})
+    tags = StringField(label='Tags', validators=[DataRequired(), Length(min=3, max=50,  message='⚠️ Tag length must be between %(min)d and %(max)d characters!')], render_kw={"placeholder": "Tags (Add up to 5 short tags)"})
     submit = SubmitField('Submit')
 
 class CommentsForm(FlaskForm):

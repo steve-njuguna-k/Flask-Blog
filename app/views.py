@@ -2,7 +2,7 @@ import datetime
 from app import app
 from flask import render_template, flash, redirect, request, url_for
 from .email import send_email
-from .models import Comments, User, db, Posts
+from .models import Comments, Tags, User, db, Posts
 from flask_login import current_user, login_user, logout_user, login_required
 from .forms import CommentsForm, LoginForm, RegisterForm, BlogPostsForm
 from flask_bcrypt import Bcrypt
@@ -100,8 +100,38 @@ def logout():
     # redirecting to home page
     return redirect(url_for('home'))
 
-@app.route('/post/add')
+@app.route('/post/add', methods = ['GET', 'POST'])
 @login_required
 def add_post():
     form = BlogPostsForm()
+
+    if form.validate_on_submit():
+        post = Posts()
+        post.title = form.title.data
+        post.description = form.description.data
+        post.category = form.category.data
+        tag_string = form.tags.data
+        tags = tag_string.split(",")
+        for tag in tags:
+            post_tag = add_tags(tag)
+            print (post_tag)
+            post.tags.append(post_tag)
+            
+        post.user_id = current_user._get_current_object().id
+       
+        db.session.add(post)
+        db.session.commit()
+        flash ('✅ New Post Successfully Created!', 'success')
+        return redirect(url_for('add_post'))
+
     return render_template('Add Post.html', form = form)
+
+def add_tags(tag):
+    existing_tag = Tags.query.filter(Tags.name == tag.lower()).one_or_none()
+    """if it does return existing tag objec to list"""
+    if existing_tag is not None:
+        return existing_tag
+    else:
+       new_tag = Tags()
+       new_tag.name = tag.lower()
+       return new_tag

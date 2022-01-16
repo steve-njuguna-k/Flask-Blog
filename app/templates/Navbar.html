@@ -32,12 +32,12 @@
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                             <a class="dropdown-item" href="#"><i class="fal fa-user-alt"></i> My Profile</a>
-                            <a class="dropdown-item" href="#"><i class="fal fa-file-alt"></i> My Posts</a>
+                            <a class="dropdown-item" href="{{ url_for('my_posts') }}"><i class="fal fa-file-alt"></i> My Posts</a>
                             <a class="dropdown-item" href="{{ url_for('logout') }}"><i class="fal fa-sign-out"></i> Logout</a>
                         </div>
                     </div>
                 {% else %}
-                    <a href="{{ url_for('register') }}">
+                    <a href="{{ url_for('login') }}">
                         <button class="btn btn-md btn-link ms-3" style="margin-left: 30px;"><i class="fal fa-user-circle fa-2x"></i></button>
                     </a>
                 {% endif %}

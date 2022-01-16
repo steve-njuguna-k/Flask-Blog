@@ -186,3 +186,9 @@ def delete_post(id):
     db.session.commit()
     flash ('✅ The Post Has Been Successfully Delete!', 'success')
     return redirect(url_for('home', id = id))
+
+@app.route('/posts')
+@login_required
+def my_posts():
+    posts = Posts.query.filter_by(user_id = current_user._get_current_object().id)
+    return render_template('My Posts.html', posts = posts)

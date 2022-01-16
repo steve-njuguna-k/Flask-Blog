@@ -16,11 +16,11 @@
                                 <a href="#">
                                     <span class="d-block font-weight-bold name">{{ post.user.first_name }} {{ post.user.last_name }}</span>
                                 </a>
-                                <span class="date text-black-50" style="font-size: 15px;">Date Published - {{ post.created_on.strftime('%d/%m/%Y') }}</span>
+                                <span class="date text-black-50" style="font-size: 15px;"><i class="fas fa-calendar-alt"></i> {{ post.created_on.strftime('%d/%m/%Y') }}</span>
                             </div>
                         </div>
                         <br>
-                        <h1 class="card-title text-dark"><b>{{ post.title }}</b></h1>
+                        <h2 class="card-title text-dark"><b>{{ post.title }}</b></h2>
                         <p class="card-text text-muted tags">
                             {% for tag in post.tags %}
                             <span class="badge badge-secondary">{{ tag.name }}</span>

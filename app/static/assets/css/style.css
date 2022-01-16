@@ -380,6 +380,32 @@ a:hover {
 	border-radius: .25rem;
 }
 
+.btn-outline-warning {
+    color: #fcb400;
+    border-color: #fcb400;
+	border-radius: .25rem;
+}
+
+.btn-outline-warning:hover {
+    color: #fff;
+    background-color: #fcb400;
+	border-color: #fcb400;
+	border-radius: .25rem;
+}
+
+.btn-outline-danger {
+    color: #dd0000;
+    border-color: #dd0000;
+	border-radius: .25rem;
+}
+
+.btn-outline-danger:hover {
+    color: #fff;
+    background-color: #dd0000;
+	border-color: #dd0000;
+	border-radius: .25rem;
+}
+
 .dropdown-menu {
     border: 2px solid #6d81f5;
     padding: 0rem 0;

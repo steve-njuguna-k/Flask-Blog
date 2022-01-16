@@ -143,3 +143,15 @@ def post(id):
     post = Posts.query.filter_by(id = id).first()
 
     return render_template('Post.html', post = post)
+
+@app.route('/post/<id>/edit', methods=['POST','GET'])
+@login_required
+def edit_post(id):
+    form = BlogPostsForm()
+    post = Posts.query.filter_by(id = id).first()
+
+    if current_user.id == post.id:
+        return render_template('Edit Post.html', post = post, form = form)
+    else:
+        flash('⚠️ You Are Not Authorized To Edit This Post! You Are Not The Author', 'danger')
+        return redirect(url_for('home'))

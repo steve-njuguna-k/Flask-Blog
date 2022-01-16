@@ -99,3 +99,8 @@ def logout():
     logout_user()
     # redirecting to home page
     return redirect(url_for('home'))
+
+@app.route('/post/add')
+@login_required
+def add_post():
+    return render_template('Add Post.html')

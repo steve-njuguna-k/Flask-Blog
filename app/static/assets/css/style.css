@@ -49,6 +49,7 @@ a:hover {
 
 .searchbar{
     border-radius: .25rem;
+	border-color: 6px solid rgba(240, 246, 252, 0.1);
 }
 
 .btn-primary, .btn-primary:active, .btn-primary:focus{

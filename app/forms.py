@@ -26,6 +26,7 @@ class BlogPostsForm(FlaskForm):
         ('Sales Pitches', 'Sales Pitches'),
         ('Product Pitches', 'Product Pitches')
     ], render_kw={"placeholder": "Choose Category"})
+    tags = StringField(label='Tags', validators=[DataRequired(), Length(min=3, max=10,  message='⚠️ Tag length must be between %(min)d and %(max)d characters!')], render_kw={"placeholder": "Tags"})
     submit = SubmitField('Submit')
 
 class CommentsForm(FlaskForm):

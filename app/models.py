@@ -4,9 +4,9 @@ from flask_login import UserMixin
 
 db = SQLAlchemy()
 
-blog_tag = db.Table('post_tag',
-db.Column('post_id', db.Integer, db.ForeignKey('posts.id')),
-db.Column('tag_id', db.Integer, db.ForeignKey('tags.id'))
+post_tags = db.Table('post_tags',
+    db.Column('post_id', db.Integer, db.ForeignKey('posts.id')),
+    db.Column('tag_id', db.Integer, db.ForeignKey('tags.id'))
 )
 
 class User(UserMixin, db.Model):
@@ -60,9 +60,10 @@ class Posts(db.Model):
     description = db.Column(db.String(5000))
     category = db.Column(db.String(50))
     comment = db.relationship('Comments', backref='post', lazy='dynamic')
-    tags = db.relationship('Tags',secondary=blog_tag, back_populates="posts")
+    tags = db.relationship('Tags',secondary=post_tags, back_populates="posts")
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
-    date_published = db.Column(db.DateTime, default = datetime.datetime.utcnow())
+    created_on = db.Column(db.DateTime, default = datetime.datetime.utcnow())
+    updated_on = db.Column(db.DateTime, nullable=True)
 
     def save(self):
         db.session.add(self)
@@ -124,6 +125,10 @@ class Comments(db.Model):
 class Tags(db.Model):
     __tablename__ = 'tags'
 
-    id=db.Column(db.Integer, primary_key=True)
-    name=db.Column(db.String, unique=True, nullable=False)
-    posts = db.relationship('Posts', secondary = blog_tag, back_populates = "tags")
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String, unique=True, nullable=False)
+    posts = db.relationship('Posts', secondary = post_tags, back_populates = "tags")
+    created_on = db.Column(db.DateTime, default = datetime.datetime.utcnow)
+
+    def __repr__(self):
+        return "<{}:{}>".format(self.id, self.name)

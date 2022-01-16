@@ -479,3 +479,12 @@ a:hover {
 	padding-bottom: 15px;
 	text-align: center;
 }
+
+.meta-data {
+	width: 650px;
+	margin: 120px auto;
+}
+
+.text-dark{
+	color: #000!important;
+}

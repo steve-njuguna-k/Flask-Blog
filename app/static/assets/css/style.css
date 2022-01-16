@@ -482,9 +482,21 @@ a:hover {
 
 .meta-data {
 	width: 650px;
-	margin: 120px auto;
+	margin: 20px auto;
 }
 
 .text-dark{
 	color: #000!important;
+}
+
+.col-md-4.sticky-top {
+	align-self: flex-start;
+}
+
+.container-full {
+    width: 100%;
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: auto;
+    margin-left: auto;
 }

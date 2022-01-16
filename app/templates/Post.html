@@ -1,7 +1,7 @@
 {% include 'Base.html' %}
 
-<div class="container">
-	{% include 'Navbar.html' %}
+<div class="container-full">
+	{% include 'Non-Sticky Navbar.html' %}
 </div>
 
 {% block content %} 
@@ -26,11 +26,11 @@
                             <span class="badge badge-secondary">{{ tag.name }}</span>
                             {% endfor %}
                         </p>
-                        <p class="card-text">{{ post.description }}</p>
+                        <p class="card-text">{{ post.description|safe }}</p>
                     </div>
                 </div>
             </div>
-                <div class="col-md-4 meta-data">
+                <div class="col-md-4 meta-data sticky-top">
                     <div class="card shadow-sm">
                         <div class="card-body">
                             <h5 class="card-title text-primary"><b>Author <span class="text-dark">Information</span></b></h5>

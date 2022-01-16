@@ -19,7 +19,7 @@ class User(UserMixin, db.Model):
     password = db.Column(db.String(256), unique=True)
     blogs = db.relationship('Posts',backref = 'user',lazy = "dynamic")
     comments = db.relationship('Comments',backref = 'user',lazy = "dynamic")
-    image_file = db.Column(db.String(20), nullable=False, default='default.png')
+    image_file = db.Column(db.String(500), nullable=False, default='https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png')
     registered_on = db.Column(db.DateTime, nullable=False)
     confirmed = db.Column(db.Boolean, nullable=False, default=False)
     confirmed_on = db.Column(db.DateTime, nullable=True)
@@ -56,9 +56,9 @@ class Posts(db.Model):
     __tablename__ = 'posts'
 
     id = db.Column(db.Integer,primary_key=True)
-    title = db.Column(db.String(255))
-    description = db.Column(db.String(5000))
-    category = db.Column(db.String(50))
+    title = db.Column(db.String(255), nullable=False)
+    description = db.Column(db.String(10000), nullable=False)
+    category = db.Column(db.String(50), nullable=False)
     comment = db.relationship('Comments', backref='post', lazy='dynamic')
     tags = db.relationship('Tags',secondary=post_tags, back_populates="posts")
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
@@ -114,7 +114,7 @@ class Comments(db.Model):
     __tablename__ = 'comments'
 
     id = db.Column(db.Integer,primary_key=True)
-    comment = db.Column(db.String(255))
+    comment = db.Column(db.String(255), nullable=False)
     post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
     date_published = db.Column(db.DateTime, default = datetime.datetime.utcnow)
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))

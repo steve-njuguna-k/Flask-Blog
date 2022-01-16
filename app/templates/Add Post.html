@@ -40,7 +40,7 @@
                         {{ form.title(class="form-control", placeholder="New Post Title Here...") }}
                     </div>
                     <div class="form-group">
-                        {{ form.description(class="form-control", placeholder="Write Your Post Content Here...", id="text") }}
+                        {{ form.description() }}
                     </div>
                     <div class="form-group">
                         {{ form.category(class="form-control", placeholder="Select Category") }}
@@ -79,7 +79,6 @@
                         <p class="card-text">4. Add a Clear Call-to-Actione</p>
                         <p class="card-text">5. Hook Your Readers With a Great Opening</p>
                         <p class="card-text">6. Write Like You Talk</p>
-                        <p class="card-text">7. Make It Scannable</p>
                         </div>
                     </div>
                 </div>
@@ -93,4 +92,7 @@
 		</div>
 	</div>
 	{% endblock %}
+
+    {{ ckeditor.load() }}
+    {{ ckeditor.config(name='description', height= 400) }}
 {% endblock %}

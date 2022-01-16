@@ -1,0 +1,49 @@
+{% block navbar %}
+<div class="container-full">
+    <nav class="navbar navbar-expand-lg navbar-dark shadow-sm">
+        <div class="container">
+            <a href="{{ url_for('home') }}">
+                <h4 class="logo"><span class="logo-colour"><i class="far fa-code fa-lg"></i></span><b> Nerd</b><span class="logo-colour">Dev</span></h4>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav mx-auto">
+                    <form class="form-inline my-2 my-lg-0 searchbar">
+                        <div class="bg-light rounded searchbar">
+                            <div class="input-group searchbar">
+                                <input type="search" placeholder="Search Blog Articles" class="form-control border-0 bg-light searchbar" style="width: 600px;">
+                                <div class="input-group-append searchbar">
+                                  <button type="submit" class="btn btn-link searchbar"><i class="fal fa-search"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </ul>
+                <div class="d-flex">
+                {% if current_user.is_authenticated %}
+                    <a href="{{ url_for('add_post') }}">
+                        <button type="submit" class="btn btn-primary"><i class="fal fa-pencil"></i> Create A Post</button>
+                    </a>
+                    <div class="dropdown">
+                        <button class="btn btn-md btn-link ms-3" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false" style="margin-left: 30px;">
+                        <i class="fal fa-user-circle fa-2x"></i>
+                        </button>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="#"><i class="fal fa-user-alt"></i> My Profile</a>
+                            <a class="dropdown-item" href="#"><i class="fal fa-file-alt"></i> My Posts</a>
+                            <a class="dropdown-item" href="{{ url_for('logout') }}"><i class="fal fa-sign-out"></i> Logout</a>
+                        </div>
+                    </div>
+                {% else %}
+                    <a href="{{ url_for('register') }}">
+                        <button class="btn btn-md btn-link ms-3" style="margin-left: 30px;"><i class="fal fa-user-circle fa-2x"></i></button>
+                    </a>
+                {% endif %}
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
+{% endblock %}

@@ -54,7 +54,7 @@
 							<div class="card">
 								<div class="card-body">
 									<div class="d-flex flex-row user-info">
-										<img class="rounded-circle" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" height="50" width="50">
+										<img class="rounded-circle" src="{{ post.user.image_file }}" height="50" width="50">
 										<div class="d-flex flex-column justify-content-start ml-2">
 											<a href="#">
 												<span class="d-block font-weight-bold name">{{ post.user.first_name }} {{ post.user.last_name }}</span>
@@ -65,7 +65,7 @@
 									<a href="/post/{{post.id}}">
 										<h2 class="card-title"><b>{{ post.title }}</b></h2>
 									</a>
-									<p class="card-text text-muted">{{ post.description[:250] + " ..." }}</p>
+									<p class="card-text text-muted">{{ post.description[:250]|safe + " ..." }}</p>
 									<p class="card-text text-muted tags">
 										{% for tag in post.tags %}
 										<span class="badge badge-secondary">{{ tag.name }}</span>
@@ -83,7 +83,7 @@
 							<div class="card">
 								<div class="card-body">
 									<div class="d-flex flex-row user-info">
-										<img class="rounded-circle" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" height="50" width="50">
+										<img class="rounded-circle" src="{{ post.user.image_file }}" height="50" width="50">
 										<div class="d-flex flex-column justify-content-start ml-2">
 											<a href="#">
 												<span class="d-block font-weight-bold name">{{ post.user.first_name }} {{ post.user.last_name }}</span>
@@ -94,7 +94,7 @@
 									<a href="/post/{{post.id}}">
 										<h2 class="card-title"><b>{{ post.title }}</b></h2>
 									</a>
-									<p class="card-text text-muted">{{ post.description[:250] + " ..." }}</p>
+									<p class="card-text text-muted">{{ post.description[:250]|safe + " ..." }}</p>
 									<p class="card-text text-muted tags">
 										{% for tag in post.tags %}
 										<span class="badge badge-secondary">{{ tag.name }}</span>
@@ -112,7 +112,7 @@
 							<div class="card">
 								<div class="card-body">
 									<div class="d-flex flex-row user-info">
-										<img class="rounded-circle" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" height="50" width="50">
+										<img class="rounded-circle" src="{{ post.user.image_file }}" height="50" width="50">
 										<div class="d-flex flex-column justify-content-start ml-2">
 											<a href="#">
 												<span class="d-block font-weight-bold name">{{ post.user.first_name }} {{ post.user.last_name }}</span>
@@ -123,7 +123,7 @@
 									<a href="/post/{{post.id}}">
 										<h2 class="card-title"><b>{{ post.title }}</b></h2>
 									</a>
-									<p class="card-text text-muted">{{ post.description[:250] + " ..." }}</p>
+									<p class="card-text text-muted">{{ post.description[:250]| safe + " ..."  }}</p>
 									<p class="card-text text-muted tags">
 										{% for tag in post.tags %}
 										<span class="badge badge-secondary">{{ tag.name }}</span>
@@ -141,7 +141,7 @@
 							<div class="card">
 								<div class="card-body">
 									<div class="d-flex flex-row user-info">
-										<img class="rounded-circle" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" height="50" width="50">
+										<img class="rounded-circle" src="{{ post.user.image_file }}" height="50" width="50">
 										<div class="d-flex flex-column justify-content-start ml-2">
 											<a href="#">
 												<span class="d-block font-weight-bold name">{{ post.user.first_name }} {{ post.user.last_name }}</span>
@@ -152,7 +152,7 @@
 									<a href="/post/{{post.id}}">
 										<h2 class="card-title"><b>{{ post.title }}</b></h2>
 									</a>
-									<p class="card-text text-muted">{{ post.description[:250] + " ..." }}</p>
+									<p class="card-text text-muted">{{ post.description[:250]| safe + " ..." }}</p>
 									<p class="card-text text-muted tags">
 										{% for tag in post.tags %}
 										<span class="badge badge-secondary">{{ tag.name }}</span>
@@ -170,7 +170,7 @@
 							<div class="card">
 								<div class="card-body">
 									<div class="d-flex flex-row user-info">
-										<img class="rounded-circle" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" height="50" width="50">
+										<img class="rounded-circle" src="{{ post.user.image_file }}" height="50" width="50">
 										<div class="d-flex flex-column justify-content-start ml-2">
 											<a href="#">
 												<span class="d-block font-weight-bold name">{{ post.user.first_name }} {{ post.user.last_name }}</span>
@@ -181,7 +181,7 @@
 									<a href="/post/{{post.id}}">
 										<h2 class="card-title"><b>{{ post.title }}</b></h2>
 									</a>
-									<p class="card-text text-muted">{{ post.description[:250] + " ..." }}</p>
+									<p class="card-text text-muted">{{ post.description[:250]| safe + " ..." }}</p>
 									<p class="card-text text-muted tags">
 										{% for tag in post.tags %}
 										<span class="badge badge-secondary">{{ tag.name }}</span>

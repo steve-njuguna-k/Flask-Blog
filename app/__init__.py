@@ -7,9 +7,11 @@ from flask_bcrypt import Bcrypt
 from dotenv import load_dotenv
 from flask_login import LoginManager
 from flask_heroku import Heroku
+from flask_ckeditor import CKEditor
 
 mail = Mail()
 login = LoginManager()
+ckeditor = CKEditor()
 
 app = Flask(__name__)
 
@@ -27,6 +29,7 @@ login.login_view = 'login'
 
 mail.init_app(app)
 bcrypt = Bcrypt(app)
+ckeditor.init_app(app)
 
 @login.user_loader
 def load_user(user_id):

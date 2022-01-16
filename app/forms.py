@@ -1,6 +1,7 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, SelectField, TextAreaField, BooleanField
 from wtforms.validators import DataRequired, Email, Length, EqualTo
+from flask_ckeditor import CKEditorField
 
 class LoginForm(FlaskForm):
     email = StringField(label='Email Address', validators=[DataRequired(), Email(message='⚠️ Enter A Valid Email Address!')], render_kw={"placeholder": "Email Address"})
@@ -18,7 +19,7 @@ class RegisterForm(FlaskForm):
 
 class BlogPostsForm(FlaskForm):
     title = StringField(label='Post Title', validators=[DataRequired(), Length(min=3, max=100,  message='⚠️ Title length must be between %(min)d and %(max)d characters!')], render_kw={"placeholder": "New Post Title Here..."})
-    description = TextAreaField(label='Description',validators=[DataRequired(), Length(min=6, max=5000,  message='⚠️ Pitch length must be between %(min)d and %(max)d characters!')], render_kw={"placeholder": "Write Your Post Content Here...", 'rows': 20})
+    description = CKEditorField(label='Description',validators=[DataRequired(), Length(min=6, max=10000,  message='⚠️ Content length must be between %(min)d and %(max)d characters!')], render_kw={"placeholder": "Write Your Post Content Here...", 'rows': 20})
     category = SelectField(label='Select Category',choices=[
         ('AI', 'AI'),
         ('Big Data', 'Big Data'),

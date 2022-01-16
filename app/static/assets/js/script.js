@@ -7,12 +7,3 @@ $(".toggle-password").click(function() {
         input.attr("type", "password");
     }
 });
-
-$(document).ready(function() { 
-    $(window).scroll(function() {
-    var theTop = $(window).scrollTop();
-        $('.colwrap').css('top', $(window).scrollTop() + 10 + "px");
-    });
-        
-    // this might better with some kind of animate function to make scrolling smoother    
-});

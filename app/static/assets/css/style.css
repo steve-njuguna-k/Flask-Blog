@@ -1,6 +1,6 @@
 body {
     font-family:'SF Pro Text', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #efefef;
+    background-color: #f2f2f2;
     color: #000;
 }
 
@@ -113,7 +113,7 @@ a:hover {
 
 .form-control {
 	height: 41px;
-	background: #f2f2f2;
+	background: #f2f2f2!important;
 	box-shadow: none !important;
 	border: none;
 }
@@ -321,7 +321,7 @@ a:hover {
 
 .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
     color: #6d81f5;
-    background-color: #efefef;
+    background-color: #f2f2f2;
 }
 
 .nav-link:hover {

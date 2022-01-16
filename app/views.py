@@ -103,4 +103,5 @@ def logout():
 @app.route('/post/add')
 @login_required
 def add_post():
-    return render_template('Add Post.html')
+    form = BlogPostsForm()
+    return render_template('Add Post.html', form = form)

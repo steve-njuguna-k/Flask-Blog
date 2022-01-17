@@ -11,8 +11,8 @@
         <b><h1 class="text-center py-4">My <span class="logocolour">Posts</span></h1></b>
     </div>
 	<div class="row">
+        {% for post in posts %}
 		<div class="col-md-6">
-            {% for post in posts %}
             <div class="card">
                 <div class="card-body">
                     <div class="d-flex flex-row user-info">
@@ -69,8 +69,8 @@
                     </div>
                 </div>
             </div>
-        {% endfor %}
 		</div>
+        {% endfor %}
 	</div>
 </div>
 

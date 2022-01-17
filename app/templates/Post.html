@@ -34,6 +34,7 @@
                         </div>
                         <br>
                         <h2 class="card-title text-dark"><b>{{ post.title }}</b></h2>
+                        <br>
                         <p class="card-text text-muted tags">
                             {% for tag in post.tags %}
                             <span class="badge badge-secondary">{{ tag.name }}</span>
@@ -47,10 +48,11 @@
                 <div class="card shadow-sm">
                     <div class="card-body">
                         <h5 class="card-title text-primary"><b>Author <span class="text-dark">Information</span></b></h5>
+                        <br>
                         <div class="d-flex flex-row user-info">
                             <img class="rounded-circle" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" height="50" width="50">
                             <div class="d-flex flex-column justify-content-start ml-2">
-                                <a href="#">
+                                <a href="/author/{{ post.user.id }}">
                                     <span class="d-block font-weight-bold text-dark">{{ post.user.first_name }} {{ post.user.last_name }}</span>
                                 </a>
                                 <span class="date text-black-50" style="font-size: 15px;">Date Joined - {{ post.user.registered_on.strftime('%d/%m/%Y') }}</span>
@@ -62,6 +64,7 @@
                 <div class="card shadow-sm">
                     <div class="card-body">
                         <h5 class="card-title"><b>More From <span class="text-primary"> {{post.user.first_name }} {{ post.user.last_name }}</span></b></h5>
+                        <br>
                         <p class="card-text">1. Know Your Audience</p>
                         <p class="card-text">2. Use Bullet Points</p>
                         <p class="card-text">3. Optimize for SEO</p>

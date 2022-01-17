@@ -9,7 +9,7 @@
 
 <div class="container-fluid main-section">
 	<div class="row">
-		<div class="col-sm-3 left-pane">
+		<div class="col-sm-3 left-pane sticky-top">
 			<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 				<h4><b>Main Menu</b></h4>
 				<a class="nav-link active" data-toggle="pill" href="#v-pills-home" role="tab">Home</a> 
@@ -68,7 +68,7 @@
 									<div class="d-flex flex-row user-info">
 										<img class="rounded-circle" src="{{ post.user.image_file }}" height="50" width="50">
 										<div class="d-flex flex-column justify-content-start ml-2">
-											<a href="#">
+											<a href="{{ url_for('profile') }}">
 												<span class="d-block font-weight-bold name">{{ post.user.first_name }} {{ post.user.last_name }}</span>
 											</a>
 											<span class="date text-black-50" style="font-size: 15px;"><i class="fas fa-calendar-alt"></i> {{ post.created_on.strftime('%d/%m/%Y') }}</span>
@@ -128,7 +128,7 @@
 									<div class="d-flex flex-row user-info">
 										<img class="rounded-circle" src="{{ post.user.image_file }}" height="50" width="50">
 										<div class="d-flex flex-column justify-content-start ml-2">
-											<a href="#">
+											<a href="{{ url_for('profile') }}">
 												<span class="d-block font-weight-bold name">{{ post.user.first_name }} {{ post.user.last_name }}</span>
 											</a>
 											<span class="date text-black-50" style="font-size: 15px;"><i class="fas fa-calendar-alt"></i> {{ post.created_on.strftime('%d/%m/%Y') }}</span>
@@ -188,7 +188,7 @@
 									<div class="d-flex flex-row user-info">
 										<img class="rounded-circle" src="{{ post.user.image_file }}" height="50" width="50">
 										<div class="d-flex flex-column justify-content-start ml-2">
-											<a href="#">
+											<a href="{{ url_for('profile') }}">
 												<span class="d-block font-weight-bold name">{{ post.user.first_name }} {{ post.user.last_name }}</span>
 											</a>
 											<span class="date text-black-50" style="font-size: 15px;"><i class="fas fa-calendar-alt"></i> {{ post.created_on.strftime('%d/%m/%Y') }}</span>
@@ -248,7 +248,7 @@
 									<div class="d-flex flex-row user-info">
 										<img class="rounded-circle" src="{{ post.user.image_file }}" height="50" width="50">
 										<div class="d-flex flex-column justify-content-start ml-2">
-											<a href="#">
+											<a href="{{ url_for('profile') }}">
 												<span class="d-block font-weight-bold name">{{ post.user.first_name }} {{ post.user.last_name }}</span>
 											</a>
 											<span class="date text-black-50" style="font-size: 15px;"><i class="fas fa-calendar-alt"></i> {{ post.created_on.strftime('%d/%m/%Y') }}</span>
@@ -308,7 +308,7 @@
 									<div class="d-flex flex-row user-info">
 										<img class="rounded-circle" src="{{ post.user.image_file }}" height="50" width="50">
 										<div class="d-flex flex-column justify-content-start ml-2">
-											<a href="#">
+											<a href="{{ url_for('profile') }}">
 												<span class="d-block font-weight-bold name">{{ post.user.first_name }} {{ post.user.last_name }}</span>
 											</a>
 											<span class="date text-black-50" style="font-size: 15px;"><i class="fas fa-calendar-alt"></i> {{ post.created_on.strftime('%d/%m/%Y') }}</span>
@@ -371,36 +371,24 @@
 				</div>
 			{% endblock %}
 		</div>
-		<div class="col-sm-3 right-pane">
-			<h4><b>Tech News</b></h4>
+		<div class="col-sm-3 right-pane sticky-top">
+			<h4 class="text-primary"><b>Random Quote</b></h4>
 			<div class="card">
 				<div class="card-body">
-				  <h5 class="card-title"><b>Special title treatment</b></h5>
-				  <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-				  <a href="#" class="btn btn-primary btn-sm">Go somewhere</a>
+				  <p class="card-text">"{{ random["content"] }}"</p>
+				  <p class="card-text"><b>{{ random["author"] }}</b></p>
 				</div>
 			</div>
 			<br>
-			<h4><b>Tech News</b></h4>
+			<h4 class="text-primary"><b>Tech Quotes</b></h4>
+			{% for quote in quotes['results'] %}
 			<div class="card">
-				<ul class="list-group pull-left">
-					<li class="list-group-item">
-					  <h5>Jen &nbsp; &nbsp;<span class="badge pull-right">100%</span></h5>
-					</li>
-					<li class="list-group-item">
-					  <h5>Dezi &nbsp; &nbsp;<span class="badge pull-right">100%</span></h5>
-					</li>
-					<li class="list-group-item">
-					  <h5>Eli &nbsp; &nbsp;<span class="badge pull-right">100%</span></h5>
-					</li>
-					<li class="list-group-item">
-					  <h5>Mojo &nbsp; &nbsp;<span class="badge pull-right">83%</span></h5>
-					</li>
-					<li class="list-group-item">
-					  <h5>Myself &nbsp; &nbsp;<span class="badge pull-right">100%</span></h5>
-					</li>
-				</ul>
+				<div class="card-body">
+				  <p class="card-text">"{{ quote["content"] }}"</p>
+				  <p class="card-text"><b>{{ quote["author"] }}</b></p>
+				</div>
 			</div>
+			{% endfor %}
 		</div>
 	</div>
 </div>

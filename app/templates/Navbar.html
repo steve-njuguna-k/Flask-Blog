@@ -31,7 +31,7 @@
                         <i class="fal fa-user-circle fa-2x"></i>
                         </button>
                         <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#"><i class="fal fa-user-alt"></i> My Profile</a>
+                            <a class="dropdown-item" href="{{ url_for('profile') }}"><i class="fal fa-user-alt"></i> My Profile</a>
                             <a class="dropdown-item" href="{{ url_for('my_posts') }}"><i class="fal fa-file-alt"></i> My Posts</a>
                             <a class="dropdown-item" href="{{ url_for('logout') }}"><i class="fal fa-sign-out"></i> Logout</a>
                         </div>

@@ -1,5 +1,5 @@
 body {
-    font-family:'Poppins', Tahoma, Geneva, Verdana, sans-serif;
+    font-family:'Philosopher', Tahoma, Geneva, Verdana, sans-serif;
     background-color: #f2f2f2;
     color: #000;
 }
@@ -519,6 +519,14 @@ a:hover {
 	align-self: flex-start;
 }
 
+.col-sm-3.sticky-top {
+	align-self: flex-start;
+}
+
+.col-md-3.sticky-top {
+	align-self: flex-start;
+}
+
 .container-full {
     width: 100%;
     padding-right: 0px;
@@ -553,4 +561,19 @@ a:hover {
 	color: #fff;
     background-color: #dd0000!important;
 	border-radius: .25rem;
+}
+
+.pills{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}
+
+.nav-pills .navlink.active, .nav-pills .show>.navlink {
+    color: #fff;
+    background-color: #6d81f5;
+	padding: 0.375rem 0.75rem;
+	border-radius: 0.25rem;
+	margin-left: 20px;
+	margin-right: 20px;
 }

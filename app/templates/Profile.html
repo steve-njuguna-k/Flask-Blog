@@ -1,0 +1,46 @@
+{% extends "Base.html" %}
+
+<div class="container">
+	{% include 'Navbar.html' %}
+</div>
+
+{% block content %}
+
+<div class="container main-section">
+    <div class="contaier">
+        <b><h1 class="text-center py-4">My <span class="logocolour">Profile</span></h1></b>
+    </div>
+	<div class="row">
+		<div class="col-sm-12 text-center center-pane">
+			{% with messages = get_flashed_messages(with_categories=true) %}
+				{% if messages %}
+					{% for category, message in messages %}
+						<div class="alert alert-{{ category }} alert-dismissible fade show text-center" role="alert">
+							<span>{{ message }}</span>
+							<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+							</button>
+						</div>
+					{% endfor %}
+				{% endif %}
+			{% endwith %}
+            <div class="row ">
+                <div class="col-sm-4 text-center"></div>
+                    <div class="col-sm-4 text-center">
+                        <div class="card shadow-sm">
+                            <div class="card-body">
+                                <i class="fal fa-user-circle fa-10x icon-colour"></i>
+                                <br>
+                                <h1 class="card-text text-dark" style="margin-top: 10px;">{{ user.first_name }} {{ user.last_name }}</h1>
+                                <p class="card-text text-dark" style="font-size: large;">{{ user.email }}</p>
+                                <p class="card-text text-dark" style="font-size: large;"><span class="text-primary">Member Since:</span> {{ user.registered_on.strftime('%Y-%m-%d') }}</p>
+                            </div>
+                        </div>
+                    </div>
+                <div class="col-sm-4 text-center"></div>
+            </div> 
+        </div>
+     </div>
+</div>
+
+{% endblock %}

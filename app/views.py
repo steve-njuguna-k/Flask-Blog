@@ -8,11 +8,16 @@ from .forms import CommentsForm, LoginForm, RegisterForm, BlogPostsForm, EditBlo
 from flask_bcrypt import Bcrypt
 from .token import confirm_token, generate_confirmation_token
 bcrypt = Bcrypt(app)
+import requests
 
 @app.route('/')
 def home():
+    random_api = requests.get("https://api.quotable.io/random")
+    quotes_api = requests.get("https://quotable.io/quotes?tags=technology")
+    quotes = quotes_api.json()
+    random = random_api.json()
     posts = Posts.query.all()
-    return render_template('Index.html', posts = posts)
+    return render_template('Index.html', posts = posts, quotes = quotes, random = random)
 
 @app.route('/register', methods = ['GET', 'POST'])
 def register():
@@ -192,3 +197,8 @@ def delete_post(id):
 def my_posts():
     posts = Posts.query.filter_by(user_id = current_user._get_current_object().id)
     return render_template('My Posts.html', posts = posts)
+
+@app.route('/profile')
+def profile():
+    user = current_user._get_current_object()
+    return render_template('Profile.html', user = user)

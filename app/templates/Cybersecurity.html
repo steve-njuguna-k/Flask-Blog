@@ -1,0 +1,434 @@
+{% extends "Base.html" %}
+
+<div class="container">
+	{% include 'Navbar.html' %}
+</div>
+
+{% block content %}
+
+	<div class="container-fluid main-section">
+		<div class="row">
+			<div class="col-sm-3 left-pane sticky-top">
+				<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+					<h4><b>Categories</b></h4>
+					<a class="nav-link" href="{{ url_for('aimachinelearning') }}">AI & Machine Learning</a> 
+					<a class="nav-link" href="{{ url_for('bigdata') }}">Big Data</a> 
+					<a class="nav-link" href="{{ url_for('blockchaincryptocurrency') }}">Blockchain & Cryptocurrency</a> 
+					<a class="nav-link" href="{{ url_for('careerdevelopment') }}">Career Development</a> 
+					<a class="nav-link" href="{{ url_for('cloudcomputing') }}">Cloud Computing</a>
+					<a class="nav-link active" href="{{ url_for('cybersecurity') }}">Cybersecurity</a> 
+					<a class="nav-link" href="{{ url_for('designux') }}">Design + UX</a>  
+					<a class="nav-link" href="{{ url_for('devops') }}">DevOps</a> 
+					<a class="nav-link" href="{{ url_for('fintech') }}">Fintech</a> 
+					<a class="nav-link" href="{{ url_for('iot') }}">IoT</a>
+					<a class="nav-link" href="{{ url_for('robotics') }}">Robotics</a> 
+					<a class="nav-link" href="{{ url_for('saas') }}">SaaS</a> 
+					<a class="nav-link" href="{{ url_for('softwaredevelopmet') }}">Software Development</a> 
+				</div>
+			</div>
+			<div class="col-sm-6 center-pane">
+				{% with messages = get_flashed_messages(with_categories=true) %}
+					{% if messages %}
+						{% for category, message in messages %}
+							<div class="alert alert-{{ category }} alert-dismissible fade show text-center" role="alert">
+								<span>{{ message }}</span>
+								<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+								<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+						{% endfor %}
+					{% endif %}
+				{% endwith %}
+				<div class="tab-pills">
+					<ul class="nav nav-pills">
+						<li class="nav-item">
+							<a class="nav-link active" data-toggle="pill" href="#relevant" role="tab" aria-controls="pills-relevant" aria-selected="true">Relevant</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="pill" href="#latest" role="tab" aria-controls="pills-latest" aria-selected="false">Latest</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="pill" href="#top" role="tab" aria-controls="pills-top" aria-selected="false">Top</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="pill" href="#sponsored" role="tab" aria-controls="pills-sponsored" aria-selected="false">Sponsored</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" data-toggle="pill" href="#all" role="tab" aria-controls="pills-all" aria-selected="false">All</a>
+						</li>
+					</ul>
+					<div class="tab-content mt-3">
+						<div class="tab-pane fade show active" id="relevant" role="tabpanel" aria-labelledby="relevant-tab">
+							{% if posts %}
+								{% for post in posts %}
+									<div class="card">
+										<div class="card-body">
+											<div class="d-flex flex-row user-info">
+												<img class="rounded-circle" src="{{ post.user.image_file }}" height="50" width="50">
+												<div class="d-flex flex-column justify-content-start ml-2">
+													<a href="/author/{{ post.user.id }}">
+														<span class="d-block font-weight-bold name">{{ post.user.first_name }} {{ post.user.last_name }}</span>
+													</a>
+													<span class="date text-black-50" style="font-size: 15px;"><i class="fas fa-calendar-alt"></i> {{ post.created_on.strftime('%d/%m/%Y') }}</span>
+												</div>
+											</div>
+											<a href="/post/{{post.id}}">
+												<h3 class="card-title"><b>{{ post.title }}</b></h3>
+											</a>
+											<p class="card-text text-muted">{{ post.description[:250]|safe + " ..." }}</p>
+											<p class="card-text text-muted tags">
+												{% for tag in post.tags %}
+												<span class="badge badge-secondary">{{ tag.name }}</span>
+												{% endfor %}
+											</p>
+											{% if current_user.id == post.user_id %}
+											<a class="float-left" style="margin-right: 5px;" href="/post/{{post.id}}/edit">
+												<button class="btn btn-outline-warning btn-sm"><i class="far fa-edit"></i> Edit</button>
+											</a>
+											<a href="#">
+												<button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#exampleModal{{post.id}}"><i class="far fa-trash"></i> Delete</button>
+											</a>
+											{% endif %}
+											<a class="float-right" href="/{{post.id}}/comment">
+											<button class="btn btn-outline-primary btn-sm"><i class="far fa-comment-alt"></i> Comment</button>
+											</a>
+										</div>
+									</div>
+
+									<!-- Modal -->
+									<div class="modal fade" id="exampleModal{{post.id}}" tabindex="-1" data-backdrop="static" data-keyboard="false" aria-labelledby="exampleModalLabel{{post.id}}" aria-hidden="true">
+										<div class="modal-dialog modal-dialog-centered">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title text-danger" id="exampleModalLabel{{post.id}}">Delete Blog Post</h5>
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+													</div>
+												<div class="modal-body">
+													<p>Are you you want to delete the post? <span class="text-danger">(This can't be undone)</span></p>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+													<a href="/post/{{ post.id }}/delete">
+														<button type="button" class="btn btn-danger btn-sm"><i class="far fa-trash"></i> Delete</button>
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								{% endfor %}
+							{% else %}
+								<div class="text-center" style="margin-top: 70px;">
+									<i class="far fa-file-excel fa-5x"></i>
+									<br>
+									<h1 class="text-center py-4"><b>No Posts Found</b></h1>
+								</div>
+							{% endif %}
+						</div>
+						<div class="tab-pane fade" id="latest" role="tabpanel" aria-labelledby="profile-tab">
+							{% if posts %}
+								{% for post in posts %}
+									<div class="card">
+										<div class="card-body">
+											<div class="d-flex flex-row user-info">
+												<img class="rounded-circle" src="{{ post.user.image_file }}" height="50" width="50">
+												<div class="d-flex flex-column justify-content-start ml-2">
+													<a href="/author/{{ post.user.id }}">
+														<span class="d-block font-weight-bold name">{{ post.user.first_name }} {{ post.user.last_name }}</span>
+													</a>
+													<span class="date text-black-50" style="font-size: 15px;"><i class="fas fa-calendar-alt"></i> {{ post.created_on.strftime('%d/%m/%Y') }}</span>
+												</div>
+											</div>
+											<a href="/post/{{post.id}}">
+												<h3 class="card-title"><b>{{ post.title }}</b></h3>
+											</a>
+											<p class="card-text text-muted">{{ post.description[:250]|safe + " ..." }}</p>
+											<p class="card-text text-muted tags">
+												{% for tag in post.tags %}
+												<span class="badge badge-secondary">{{ tag.name }}</span>
+												{% endfor %}
+											</p>
+											{% if current_user.id == post.user_id %}
+											<a class="float-left" style="margin-right: 5px;" href="/post/{{post.id}}/edit">
+												<button class="btn btn-outline-warning btn-sm"><i class="far fa-edit"></i> Edit</button>
+											</a>
+											<a href="#">
+												<button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#exampleModal{{post.id}}"><i class="far fa-trash"></i> Delete</button>
+											</a>
+											{% endif %}
+											<a class="float-right" href="/{{post.id}}/comment">
+											<button class="btn btn-outline-primary btn-sm"><i class="far fa-comment-alt"></i> Comment</button>
+											</a>
+										</div>
+									</div>
+
+									<!-- Modal -->
+									<div class="modal fade" id="exampleModal{{post.id}}" tabindex="-1" data-backdrop="static" data-keyboard="false" aria-labelledby="exampleModalLabel{{post.id}}" aria-hidden="true">
+										<div class="modal-dialog modal-dialog-centered">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title text-danger" id="exampleModalLabel{{post.id}}">Delete Blog Post</h5>
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+													</div>
+												<div class="modal-body">
+													<p>Are you you want to delete the post? <span class="text-danger">(This can't be undone)</span></p>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+													<a href="/post/{{ post.id }}/delete">
+														<button type="button" class="btn btn-danger btn-sm"><i class="far fa-trash"></i> Delete</button>
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								{% endfor %}
+							{% else %}
+								<div class="text-center" style="margin-top: 70px;">
+									<i class="far fa-file-excel fa-5x"></i>
+									<br>
+									<h1 class="text-center py-4"><b>No Posts Found</b></h1>
+								</div>
+							{% endif %}
+						</div>
+						<div class="tab-pane fade" id="top" role="tabpanel" aria-labelledby="top-tab">
+							{% if posts %}
+								{% for post in posts %}
+									<div class="card">
+										<div class="card-body">
+											<div class="d-flex flex-row user-info">
+												<img class="rounded-circle" src="{{ post.user.image_file }}" height="50" width="50">
+												<div class="d-flex flex-column justify-content-start ml-2">
+													<a href="/author/{{ post.user.id }}">
+														<span class="d-block font-weight-bold name">{{ post.user.first_name }} {{ post.user.last_name }}</span>
+													</a>
+													<span class="date text-black-50" style="font-size: 15px;"><i class="fas fa-calendar-alt"></i> {{ post.created_on.strftime('%d/%m/%Y') }}</span>
+												</div>
+											</div>
+											<a href="/post/{{post.id}}">
+												<h3 class="card-title"><b>{{ post.title }}</b></h3>
+											</a>
+											<p class="card-text text-muted">{{ post.description[:250]|safe + " ..." }}</p>
+											<p class="card-text text-muted tags">
+												{% for tag in post.tags %}
+												<span class="badge badge-secondary">{{ tag.name }}</span>
+												{% endfor %}
+											</p>
+											{% if current_user.id == post.user_id %}
+											<a class="float-left" style="margin-right: 5px;" href="/post/{{post.id}}/edit">
+												<button class="btn btn-outline-warning btn-sm"><i class="far fa-edit"></i> Edit</button>
+											</a>
+											<a href="#">
+												<button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#exampleModal{{post.id}}"><i class="far fa-trash"></i> Delete</button>
+											</a>
+											{% endif %}
+											<a class="float-right" href="/{{post.id}}/comment">
+											<button class="btn btn-outline-primary btn-sm"><i class="far fa-comment-alt"></i> Comment</button>
+											</a>
+										</div>
+									</div>
+
+									<!-- Modal -->
+									<div class="modal fade" id="exampleModal{{post.id}}" tabindex="-1" data-backdrop="static" data-keyboard="false" aria-labelledby="exampleModalLabel{{post.id}}" aria-hidden="true">
+										<div class="modal-dialog modal-dialog-centered">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title text-danger" id="exampleModalLabel{{post.id}}">Delete Blog Post</h5>
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+													</div>
+												<div class="modal-body">
+													<p>Are you you want to delete the post? <span class="text-danger">(This can't be undone)</span></p>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+													<a href="/post/{{ post.id }}/delete">
+														<button type="button" class="btn btn-danger btn-sm"><i class="far fa-trash"></i> Delete</button>
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								{% endfor %}
+							{% else %}
+								<div class="text-center" style="margin-top: 70px;">
+									<i class="far fa-file-excel fa-5x"></i>
+									<br>
+									<h1 class="text-center py-4"><b>No Posts Found</b></h1>
+								</div>
+							{% endif %}
+						</div>
+						<div class="tab-pane fade" id="sponsored" role="tabpanel" aria-labelledby="sponsored-tab">
+							{% if posts %}
+								{% for post in posts %}
+									<div class="card">
+										<div class="card-body">
+											<div class="d-flex flex-row user-info">
+												<img class="rounded-circle" src="{{ post.user.image_file }}" height="50" width="50">
+												<div class="d-flex flex-column justify-content-start ml-2">
+													<a href="/author/{{ post.user.id }}">
+														<span class="d-block font-weight-bold name">{{ post.user.first_name }} {{ post.user.last_name }}</span>
+													</a>
+													<span class="date text-black-50" style="font-size: 15px;"><i class="fas fa-calendar-alt"></i> {{ post.created_on.strftime('%d/%m/%Y') }}</span>
+												</div>
+											</div>
+											<a href="/post/{{post.id}}">
+												<h3 class="card-title"><b>{{ post.title }}</b></h3>
+											</a>
+											<p class="card-text text-muted">{{ post.description[:250]|safe + " ..." }}</p>
+											<p class="card-text text-muted tags">
+												{% for tag in post.tags %}
+												<span class="badge badge-secondary">{{ tag.name }}</span>
+												{% endfor %}
+											</p>
+											{% if current_user.id == post.user_id %}
+											<a class="float-left" style="margin-right: 5px;" href="/post/{{post.id}}/edit">
+												<button class="btn btn-outline-warning btn-sm"><i class="far fa-edit"></i> Edit</button>
+											</a>
+											<a href="#">
+												<button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#exampleModal{{post.id}}"><i class="far fa-trash"></i> Delete</button>
+											</a>
+											{% endif %}
+											<a class="float-right" href="/{{post.id}}/comment">
+											<button class="btn btn-outline-primary btn-sm"><i class="far fa-comment-alt"></i> Comment</button>
+											</a>
+										</div>
+									</div>
+
+									<!-- Modal -->
+									<div class="modal fade" id="exampleModal{{post.id}}" tabindex="-1" data-backdrop="static" data-keyboard="false" aria-labelledby="exampleModalLabel{{post.id}}" aria-hidden="true">
+										<div class="modal-dialog modal-dialog-centered">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title text-danger" id="exampleModalLabel{{post.id}}">Delete Blog Post</h5>
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+													</div>
+												<div class="modal-body">
+													<p>Are you you want to delete the post? <span class="text-danger">(This can't be undone)</span></p>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+													<a href="/post/{{ post.id }}/delete">
+														<button type="button" class="btn btn-danger btn-sm"><i class="far fa-trash"></i> Delete</button>
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								{% endfor %}
+							{% else %}
+								<div class="text-center" style="margin-top: 70px;">
+									<i class="far fa-file-excel fa-5x"></i>
+									<br>
+									<h1 class="text-center py-4"><b>No Posts Found</b></h1>
+								</div>
+							{% endif %}
+						</div>
+						<div class="tab-pane fade" id="all" role="tabpanel" aria-labelledby="all-tab">
+							{% if posts %}
+								{% for post in posts %}
+									<div class="card">
+										<div class="card-body">
+											<div class="d-flex flex-row user-info">
+												<img class="rounded-circle" src="{{ post.user.image_file }}" height="50" width="50">
+												<div class="d-flex flex-column justify-content-start ml-2">
+													<a href="/author/{{ post.user.id }}">
+														<span class="d-block font-weight-bold name">{{ post.user.first_name }} {{ post.user.last_name }}</span>
+													</a>
+													<span class="date text-black-50" style="font-size: 15px;"><i class="fas fa-calendar-alt"></i> {{ post.created_on.strftime('%d/%m/%Y') }}</span>
+												</div>
+											</div>
+											<a href="/post/{{post.id}}">
+												<h3 class="card-title"><b>{{ post.title }}</b></h3>
+											</a>
+											<p class="card-text text-muted">{{ post.description[:250]|safe + " ..." }}</p>
+											<p class="card-text text-muted tags">
+												{% for tag in post.tags %}
+												<span class="badge badge-secondary">{{ tag.name }}</span>
+												{% endfor %}
+											</p>
+											{% if current_user.id == post.user_id %}
+											<a class="float-left" style="margin-right: 5px;" href="/post/{{post.id}}/edit">
+												<button class="btn btn-outline-warning btn-sm"><i class="far fa-edit"></i> Edit</button>
+											</a>
+											<a href="#">
+												<button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#exampleModal{{post.id}}"><i class="far fa-trash"></i> Delete</button>
+											</a>
+											{% endif %}
+											<a class="float-right" href="/{{post.id}}/comment">
+											<button class="btn btn-outline-primary btn-sm"><i class="far fa-comment-alt"></i> Comment</button>
+											</a>
+										</div>
+									</div>
+
+									<!-- Modal -->
+									<div class="modal fade" id="exampleModal{{post.id}}" tabindex="-1" data-backdrop="static" data-keyboard="false" aria-labelledby="exampleModalLabel{{post.id}}" aria-hidden="true">
+										<div class="modal-dialog modal-dialog-centered">
+											<div class="modal-content">
+												<div class="modal-header">
+													<h5 class="modal-title text-danger" id="exampleModalLabel{{post.id}}">Delete Blog Post</h5>
+													<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+														<span aria-hidden="true">&times;</span>
+													</button>
+													</div>
+												<div class="modal-body">
+													<p>Are you you want to delete the post? <span class="text-danger">(This can't be undone)</span></p>
+												</div>
+												<div class="modal-footer">
+													<button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+													<a href="/post/{{ post.id }}/delete">
+														<button type="button" class="btn btn-danger btn-sm"><i class="far fa-trash"></i> Delete</button>
+													</a>
+												</div>
+											</div>
+										</div>
+									</div>
+								{% endfor %}
+							{% else %}
+								<div class="text-center" style="margin-top: 70px;">
+									<i class="far fa-file-excel fa-5x"></i>
+									<br>
+									<h1 class="text-center py-4"><b>No Posts Found</b></h1>
+								</div>
+							{% endif %}
+						</div>
+					</div>        
+				</div>
+			</div>
+			<div class="col-sm-3 right-pane sticky-top">
+				<h4 class="text-primary"><b>Random Quote</b></h4>
+				<div class="card">
+					<div class="card-body">
+					<p class="card-text">"{{ random["content"] }}"</p>
+					<p class="card-text"><b>{{ random["author"] }}</b></p>
+					</div>
+				</div>
+				<br>
+				<h4 class="text-primary"><b>Tech Quotes</b></h4>
+				{% for quote in quotes['results'] %}
+				<div class="card">
+					<div class="card-body">
+					<p class="card-text">"{{ quote["content"] }}"</p>
+					<p class="card-text"><b>{{ quote["author"] }}</b></p>
+					</div>
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+
+	{% block footer %}
+		<div class="container">
+			<div id="footer">
+				<p class="text-center">© 2022 Steve Njuguna</p>
+			</div>
+		</div>
+	{% endblock %}
+
+{% endblock %}

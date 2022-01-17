@@ -57,7 +57,7 @@ class Posts(db.Model):
 
     id = db.Column(db.Integer,primary_key=True)
     title = db.Column(db.String(255), nullable=False)
-    description = db.Column(db.String(10000), nullable=False)
+    description = db.Column(db.String(20000), nullable=False)
     category = db.Column(db.String(50), nullable=False)
     comment = db.relationship('Comments', backref='post', lazy='dynamic')
     tags = db.relationship('Tags',secondary=post_tags, back_populates="posts")

@@ -202,3 +202,21 @@ def my_posts():
 def profile():
     user = current_user._get_current_object()
     return render_template('Profile.html', user = user)
+
+@app.route('/<id>/comment', methods=['POST','GET'])
+@login_required
+def addComment(id):
+    form = CommentsForm()
+    post = Posts.query.filter_by(id = id).first()
+    comments = Comments.query.filter_by(post_id = post.id)
+    comment = form.comment.data
+    user_id = current_user._get_current_object().id
+
+    if form.validate_on_submit():
+        comment = Comments(comment = comment, post = post, user_id = user_id)
+        db.session.add(comment)
+        db.session.commit()
+        flash ('✅ Your Comment Has Been Successfully Added!', 'success')
+        return redirect(url_for('addComment', id = id))
+
+    return render_template('Add Comment.html', form = form, post = post, comments = comments)

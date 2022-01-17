@@ -87,6 +87,12 @@ a:hover {
     padding: 9px;
 }
 
+.link{
+    color: #000;
+	border-radius: .25rem;
+    margin-top: 1px;
+}
+
 .btn-link:hover{
     color: #6d81f5;
 	border-radius: .25rem;
@@ -345,6 +351,7 @@ a:hover {
 
 .card-title{
 	color: #000;
+	margin-bottom: 0px;
 }
 
 .card-title:hover{
@@ -576,4 +583,8 @@ a:hover {
 	border-radius: 0.25rem;
 	margin-left: 20px;
 	margin-right: 20px;
+}
+
+.stats{
+	display: inline;
 }

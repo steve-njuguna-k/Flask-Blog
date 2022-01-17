@@ -235,3 +235,8 @@ def delete_comment(id):
     db.session.commit()
     flash ('✅ The Comment Has Been Successfully Delete!', 'success')
     return redirect(url_for('addComment', id = id))
+
+@app.route('/author/<int:id>')
+def author(id):
+    user = User.query.get(id)
+    return render_template('Profile.html', user = user)

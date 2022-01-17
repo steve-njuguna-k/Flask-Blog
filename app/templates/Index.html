@@ -68,7 +68,7 @@
 									<div class="d-flex flex-row user-info">
 										<img class="rounded-circle" src="{{ post.user.image_file }}" height="50" width="50">
 										<div class="d-flex flex-column justify-content-start ml-2">
-											<a href="{{ url_for('profile') }}">
+											<a href="/author/{{ post.user.id }}">
 												<span class="d-block font-weight-bold name">{{ post.user.first_name }} {{ post.user.last_name }}</span>
 											</a>
 											<span class="date text-black-50" style="font-size: 15px;"><i class="fas fa-calendar-alt"></i> {{ post.created_on.strftime('%d/%m/%Y') }}</span>
@@ -128,7 +128,7 @@
 									<div class="d-flex flex-row user-info">
 										<img class="rounded-circle" src="{{ post.user.image_file }}" height="50" width="50">
 										<div class="d-flex flex-column justify-content-start ml-2">
-											<a href="{{ url_for('profile') }}">
+											<a href="/author/{{ post.user.id }}">
 												<span class="d-block font-weight-bold name">{{ post.user.first_name }} {{ post.user.last_name }}</span>
 											</a>
 											<span class="date text-black-50" style="font-size: 15px;"><i class="fas fa-calendar-alt"></i> {{ post.created_on.strftime('%d/%m/%Y') }}</span>
@@ -188,7 +188,7 @@
 									<div class="d-flex flex-row user-info">
 										<img class="rounded-circle" src="{{ post.user.image_file }}" height="50" width="50">
 										<div class="d-flex flex-column justify-content-start ml-2">
-											<a href="{{ url_for('profile') }}">
+											<a href="/author/{{ post.user.id }}">
 												<span class="d-block font-weight-bold name">{{ post.user.first_name }} {{ post.user.last_name }}</span>
 											</a>
 											<span class="date text-black-50" style="font-size: 15px;"><i class="fas fa-calendar-alt"></i> {{ post.created_on.strftime('%d/%m/%Y') }}</span>
@@ -248,7 +248,7 @@
 									<div class="d-flex flex-row user-info">
 										<img class="rounded-circle" src="{{ post.user.image_file }}" height="50" width="50">
 										<div class="d-flex flex-column justify-content-start ml-2">
-											<a href="{{ url_for('profile') }}">
+											<a href="/author/{{ post.user.id }}">
 												<span class="d-block font-weight-bold name">{{ post.user.first_name }} {{ post.user.last_name }}</span>
 											</a>
 											<span class="date text-black-50" style="font-size: 15px;"><i class="fas fa-calendar-alt"></i> {{ post.created_on.strftime('%d/%m/%Y') }}</span>
@@ -308,7 +308,7 @@
 									<div class="d-flex flex-row user-info">
 										<img class="rounded-circle" src="{{ post.user.image_file }}" height="50" width="50">
 										<div class="d-flex flex-column justify-content-start ml-2">
-											<a href="{{ url_for('profile') }}">
+											<a href="/author/{{ post.user.id }}">
 												<span class="d-block font-weight-bold name">{{ post.user.first_name }} {{ post.user.last_name }}</span>
 											</a>
 											<span class="date text-black-50" style="font-size: 15px;"><i class="fas fa-calendar-alt"></i> {{ post.created_on.strftime('%d/%m/%Y') }}</span>

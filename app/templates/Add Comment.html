@@ -79,11 +79,11 @@
                         </div>
                     </div>
                     <p class="card-title text-dark">{{ comment.comment }}</p>
-                    <div class="stats">
+                    <div class="stats float-right">
                         <br>
-                        {% if current_user.id == post.user_id %}
-                        <a href="/comment/{{comment.id}}/delete" method="POST">
-                            <button type="submit" id="dislikes" class="btn btn-sm btn-danger" ><i class="far fa-trash"></i> Delete</button>
+                        {% if current_user.id == post.user_id or current_user.id == comment.user_id %}
+                        <a href="{{url_for('delete_comment', id = post.id, comment_id = comment.id)}}" method="POST">
+                            <button type="submit" id="dislikes" class="btn btn-sm btn-danger" ><i class="far fa-trash"></i> Delete Comment</button>
                         </a>
                         {% endif %}
                     </div>

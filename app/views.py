@@ -221,20 +221,26 @@ def addComment(id):
 
     return render_template('Add Comment.html', form = form, post = post, comments = comments)
 
-@app.route('/comment/<int:id>/delete', methods=['GET', 'POST'])
+@app.route('/post/<int:id>/comment/<int:comment_id>/delete', methods=['GET', 'POST'])
 @login_required
-def delete_comment(id):
-    comment = Comments.query.get_or_404(id)
-    post = Posts.query.get_or_404(id)
+def delete_comment(id, comment_id):
+    comment = Comments.query.filter_by(id = comment_id).first()
+    post = Posts.query.filter_by(id = id).first()
 
-    if current_user.id != post.user_id:
-        flash('⚠️ You Are Not Authorized To Delete This Comment! You Are Not The Post Author', 'danger')
-        return redirect(url_for('addComment', id = id))
+    if not comment:
+        flash('⚠️ Comment Does Not Exist!', 'danger')
+        return redirect(url_for('addComment'))
+
+    elif current_user.id != comment.user_id and current_user.id != comment.post_id:
+        flash('⚠️ You Are Not Authorized To Delete This Comment! You Are Not The Post Author or Comment Author.', 'danger')
+        return redirect(url_for('addComment', id = post.id))
     
-    db.session.delete(comment)
-    db.session.commit()
-    flash ('✅ The Comment Has Been Successfully Delete!', 'success')
-    return redirect(url_for('addComment', id = id))
+    else:
+        db.session.delete(comment)
+        db.session.commit()
+        flash ('✅ The Comment Has Been Successfully Deleted!', 'success')
+        
+    return redirect(url_for('addComment', id = post.id))
 
 @app.route('/author/<int:id>')
 def author(id):

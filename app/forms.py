@@ -19,7 +19,7 @@ class RegisterForm(FlaskForm):
 
 class BlogPostsForm(FlaskForm):
     title = StringField(label='Post Title', validators=[DataRequired(), Length(min=3, max=100,  message='⚠️ Title length must be between %(min)d and %(max)d characters!')], render_kw={"placeholder": "New Post Title Here..."})
-    description = CKEditorField(label='Description',validators=[DataRequired(), Length(min=6, max=10000,  message='⚠️ Content length must be between %(min)d and %(max)d characters!')], render_kw={"placeholder": "Write Your Post Content Here...", 'rows': 20})
+    description = CKEditorField(label='Description',validators=[DataRequired(), Length(min=6, max=20000,  message='⚠️ Content length must be between %(min)d and %(max)d characters!')], render_kw={"placeholder": "Write Your Post Content Here...", 'rows': 20})
     category = SelectField(label='Select Category',choices=[
         ('AI & Machine Learning', 'AI & Machine Learning'),
         ('Big Data', 'Big Data'),
@@ -59,7 +59,7 @@ class EditBlogPostsForm(FlaskForm):
     submit = SubmitField('Submit')
 
 class CommentsForm(FlaskForm):
-    comment = TextAreaField(label = 'Comment',validators=[DataRequired(), Length(min=6, max=255,  message='⚠️ Comment length must be between %(min)d and %(max)d characters!')], render_kw={"placeholder": "Your Comment", 'rows': 5})
+    comment = TextAreaField(label = 'Comment',validators=[DataRequired(), Length(min=6, max=1000,  message='⚠️ Comment length must be between %(min)d and %(max)d characters!')], render_kw={"placeholder": "Your Comment", 'rows': 5})
     submit= SubmitField('Submit')
 
 class SearchForm(FlaskForm):

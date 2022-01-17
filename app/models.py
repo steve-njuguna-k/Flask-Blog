@@ -2,6 +2,7 @@ import datetime
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
 from werkzeug.security import (generate_password_hash, check_password_hash)
+from sqlalchemy.ext.hybrid import hybrid_property
 
 db = SQLAlchemy()
 
@@ -45,17 +46,6 @@ class User(UserMixin, db.Model):
 
     def get_id(self):
         return self.id
-
-    @property
-    def password(self):
-        raise AttributeError("You cannot read the password attribute")
-
-    @password.setter
-    def password(self, password):
-        self.password_hash = generate_password_hash(password)
-
-    def verify_password(self, password):
-        return check_password_hash(self.password_hash, password)
 
     def save(self):
         db.session.add(self)

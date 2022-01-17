@@ -70,23 +70,22 @@
             <div class="card shadow-sm">
                 <div class="card-body h-100">
                     <div class="d-flex flex-row user-info">
-                        <img class="rounded-circle" src="{{ post.user.image_file }}" height="50" width="50">
+                        <img class="rounded-circle" src="{{ comment.user.image_file }}" height="50" width="50">
                         <div class="d-flex flex-column justify-content-start ml-2">
                             <a href="{{ url_for('profile') }}">
-                                <span class="d-block font-weight-bold name">{{ post.user.first_name }} {{ post.user.last_name }}</span>
+                                <span class="d-block font-weight-bold name">{{ comment.user.first_name }} {{ comment.user.last_name }}</span>
                             </a>
-                            <span class="date text-black-50" style="font-size: 15px;"><i class="fas fa-calendar-alt"></i> {{ post.created_on.strftime('%d/%m/%Y') }}</span>
+                            <span class="date text-black-50" style="font-size: 15px;"><i class="fas fa-calendar-alt"></i> {{ comment.date_published.strftime('%d/%m/%Y') }}</span>
                         </div>
                     </div>
                     <p class="card-title text-dark">{{ comment.comment }}</p>
                     <div class="stats">
                         <br>
-                        <form class="stats" action="/like/{{post.id}}" method="POST">
-                            <button type="submit" id="likes" class="btn btn-sm link text-success" ><i class="far fa-thumbs-up"></i> ( {{ post.likes }} ) Likes</button>
-                        </form>
-                        <form class="stats" action="/dislike/{{post.id}}" method="POST">
-                            <button type="submit" id="dislikes" class="btn btn-sm link text-danger" ><i class="far fa-thumbs-down"></i> ( {{ post.dislikes }} ) Dislikes</button>
-                        </form>
+                        {% if current_user.id == post.user_id %}
+                        <a href="/comment/{{comment.id}}/delete" method="POST">
+                            <button type="submit" id="dislikes" class="btn btn-sm btn-danger" ><i class="far fa-trash"></i> Delete</button>
+                        </a>
+                        {% endif %}
                     </div>
                 </div>
             </div>

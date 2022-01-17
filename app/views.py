@@ -2,7 +2,7 @@ import datetime
 from app import app
 from flask import render_template, flash, redirect, request, url_for
 from .email import send_email
-from .models import Comments, Tags, User, db, Posts
+from .models import Comments, Tags, Upvote, User, db, Posts
 from flask_login import current_user, login_user, logout_user, login_required
 from .forms import CommentsForm, LoginForm, RegisterForm, BlogPostsForm, EditBlogPostsForm
 from flask_bcrypt import Bcrypt
@@ -142,14 +142,14 @@ def add_tags(tag):
        new_tag.name = tag.lower()
        return new_tag
 
-@app.route('/post/<id>', methods=['POST','GET'])
+@app.route('/post/<int:id>', methods=['POST','GET'])
 @login_required
 def post(id):
     post = Posts.query.filter_by(id = id).first()
 
     return render_template('Post.html', post = post)
 
-@app.route('/post/<id>/edit', methods=['POST','GET'])
+@app.route('/post/<int:id>/edit', methods=['POST','GET'])
 @login_required
 def edit_post(id):
     form = EditBlogPostsForm(request.form)
@@ -178,7 +178,7 @@ def edit_post(id):
     
     return render_template('Edit Post.html', post = post, form = form)
 
-@app.route('/post/<id>/delete', methods=['GET', 'POST'])
+@app.route('/post/<int:id>/delete', methods=['GET', 'POST'])
 @login_required
 def delete_post(id):
     post = Posts.query.get_or_404(id)
@@ -203,12 +203,12 @@ def profile():
     user = current_user._get_current_object()
     return render_template('Profile.html', user = user)
 
-@app.route('/<id>/comment', methods=['POST','GET'])
+@app.route('/<int:id>/comment', methods=['POST','GET'])
 @login_required
 def addComment(id):
     form = CommentsForm()
-    post = Posts.query.filter_by(id = id).first()
-    comments = Comments.query.filter_by(post_id = post.id)
+    post = Posts.query.get(id)
+    comments = Comments.query.filter_by(post_id = id).all()
     comment = form.comment.data
     user_id = current_user._get_current_object().id
 
@@ -220,3 +220,18 @@ def addComment(id):
         return redirect(url_for('addComment', id = id))
 
     return render_template('Add Comment.html', form = form, post = post, comments = comments)
+
+@app.route('/comment/<int:id>/delete', methods=['GET', 'POST'])
+@login_required
+def delete_comment(id):
+    comment = Comments.query.get_or_404(id)
+    post = Posts.query.get_or_404(id)
+
+    if current_user.id != post.user_id:
+        flash('⚠️ You Are Not Authorized To Delete This Comment! You Are Not The Post Author', 'danger')
+        return redirect(url_for('addComment', id = id))
+    
+    db.session.delete(comment)
+    db.session.commit()
+    flash ('✅ The Comment Has Been Successfully Delete!', 'success')
+    return redirect(url_for('addComment', id = id))

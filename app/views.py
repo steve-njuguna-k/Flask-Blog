@@ -7,6 +7,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 from .forms import CommentsForm, LoginForm, RegisterForm, BlogPostsForm, EditBlogPostsForm, SearchForm
 from flask_bcrypt import Bcrypt
 from .token import confirm_token, generate_confirmation_token
+from sqlalchemy import desc
 bcrypt = Bcrypt(app)
 import requests
 
@@ -17,7 +18,7 @@ def home():
     quotes_api = requests.get("https://quotable.io/quotes?tags=technology")
     quotes = quotes_api.json()
     random = random_api.json()
-    posts = Posts.query.all()
+    posts = Posts.query.order_by(desc(Posts.created_on)).all()
     return render_template('Index.html', posts = posts, quotes = quotes, random = random, form = form)
 
 @app.route('/register', methods = ['GET', 'POST'])
@@ -275,7 +276,7 @@ def aimachinelearning():
     quotes_api = requests.get("https://quotable.io/quotes?tags=technology")
     quotes = quotes_api.json()
     random = random_api.json()
-    posts = Posts.query.filter_by(category = "AI & Machine Learning").all()
+    posts = Posts.query.filter_by(category = "AI & Machine Learning").order_by(desc(Posts.created_on)).all()
     return render_template('AI & Machine Learning.html', posts = posts, form = form, quotes = quotes, random = random)
 
 @app.route('/posts/category/big-data', methods=['GET', 'POST'])
@@ -285,7 +286,7 @@ def bigdata():
     quotes_api = requests.get("https://quotable.io/quotes?tags=technology")
     quotes = quotes_api.json()
     random = random_api.json()
-    posts = Posts.query.filter_by(category = "Big Data").all()
+    posts = Posts.query.filter_by(category = "Big Data").order_by(desc(Posts.created_on)).all()
     return render_template('Big Data.html', posts = posts, form = form, quotes = quotes, random = random)
 
 @app.route('/posts/category/blockchain-cryptocurrency', methods=['GET', 'POST'])
@@ -295,7 +296,7 @@ def blockchaincryptocurrency():
     quotes_api = requests.get("https://quotable.io/quotes?tags=technology")
     quotes = quotes_api.json()
     random = random_api.json()
-    posts = Posts.query.filter_by(category = "Blockchain & Cryptocurrency").all()
+    posts = Posts.query.filter_by(category = "Blockchain & Cryptocurrency").order_by(desc(Posts.created_on)).all()
     return render_template('Blockchain & Cryptocurrency.html', posts = posts, form = form, quotes = quotes, random = random)
 
 @app.route('/posts/category/career-development', methods=['GET', 'POST'])
@@ -305,7 +306,7 @@ def careerdevelopment():
     quotes_api = requests.get("https://quotable.io/quotes?tags=technology")
     quotes = quotes_api.json()
     random = random_api.json()
-    posts = Posts.query.filter_by(category = "Career Development").all()
+    posts = Posts.query.filter_by(category = "Career Development").order_by(desc(Posts.created_on)).all()
     return render_template('Career Development.html', posts = posts, form = form, quotes = quotes, random = random)
 
 @app.route('/posts/category/cloud-computing', methods=['GET', 'POST'])
@@ -315,7 +316,7 @@ def cloudcomputing():
     quotes_api = requests.get("https://quotable.io/quotes?tags=technology")
     quotes = quotes_api.json()
     random = random_api.json()
-    posts = Posts.query.filter_by(category = "Cloud Computing").all()
+    posts = Posts.query.filter_by(category = "Cloud Computing").order_by(desc(Posts.created_on)).all()
     return render_template('Cloud Computing.html', posts = posts, form = form, quotes = quotes, random = random)
 
 @app.route('/posts/category/cybersecurity', methods=['GET', 'POST'])
@@ -325,7 +326,7 @@ def cybersecurity():
     quotes_api = requests.get("https://quotable.io/quotes?tags=technology")
     quotes = quotes_api.json()
     random = random_api.json()
-    posts = Posts.query.filter_by(category = "Cybersecurity").all()
+    posts = Posts.query.filter_by(category = "Cybersecurity").order_by(desc(Posts.created_on)).all()
     return render_template('Cybersecurity.html', posts = posts, form = form, quotes = quotes, random = random)
 
 @app.route('/posts/category/design-ux', methods=['GET', 'POST'])
@@ -335,7 +336,7 @@ def designux():
     quotes_api = requests.get("https://quotable.io/quotes?tags=technology")
     quotes = quotes_api.json()
     random = random_api.json()
-    posts = Posts.query.filter_by(category = "Design + UX").all()
+    posts = Posts.query.filter_by(category = "Design + UX").order_by(desc(Posts.created_on)).all()
     return render_template('Design & UX.html', posts = posts, form = form, quotes = quotes, random = random)
 
 @app.route('/posts/category/devops', methods=['GET', 'POST'])
@@ -345,7 +346,7 @@ def devops():
     quotes_api = requests.get("https://quotable.io/quotes?tags=technology")
     quotes = quotes_api.json()
     random = random_api.json()
-    posts = Posts.query.filter_by(category = "DevOps").all()
+    posts = Posts.query.filter_by(category = "DevOps").order_by(desc(Posts.created_on)).all()
     return render_template('DevOps.html', posts = posts, form = form, quotes = quotes, random = random)
 
 @app.route('/posts/category/fintech', methods=['GET', 'POST'])
@@ -355,7 +356,7 @@ def fintech():
     quotes_api = requests.get("https://quotable.io/quotes?tags=technology")
     quotes = quotes_api.json()
     random = random_api.json()
-    posts = Posts.query.filter_by(category = "Fintech").all()
+    posts = Posts.query.filter_by(category = "Fintech").order_by(desc(Posts.created_on)).all()
     return render_template('Fintech.html', posts = posts, form = form, quotes = quotes, random = random)
 
 @app.route('/posts/category/iot', methods=['GET', 'POST'])
@@ -365,7 +366,7 @@ def iot():
     quotes_api = requests.get("https://quotable.io/quotes?tags=technology")
     quotes = quotes_api.json()
     random = random_api.json()
-    posts = Posts.query.filter_by(category = "IoT").all()
+    posts = Posts.query.filter_by(category = "IoT").order_by(desc(Posts.created_on)).all()
     return render_template('IoT.html', posts = posts, form = form, quotes = quotes, random = random)
 
 @app.route('/posts/category/robotics', methods=['GET', 'POST'])
@@ -375,7 +376,7 @@ def robotics():
     quotes_api = requests.get("https://quotable.io/quotes?tags=technology")
     quotes = quotes_api.json()
     random = random_api.json()
-    posts = Posts.query.filter_by(category = "Robotics").all()
+    posts = Posts.query.filter_by(category = "Robotics").order_by(desc(Posts.created_on)).all()
     return render_template('Robotics.html', posts = posts, form = form, quotes = quotes, random = random)
 
 @app.route('/posts/category/saas', methods=['GET', 'POST'])
@@ -385,7 +386,7 @@ def saas():
     quotes_api = requests.get("https://quotable.io/quotes?tags=technology")
     quotes = quotes_api.json()
     random = random_api.json()
-    posts = Posts.query.filter_by(category = "SaaS").all()
+    posts = Posts.query.filter_by(category = "SaaS").order_by(desc(Posts.created_on)).all()
     return render_template('SaaS.html', posts = posts, form = form, quotes = quotes, random = random)
 
 @app.route('/posts/category/software-developmet', methods=['GET', 'POST'])
@@ -395,5 +396,5 @@ def softwaredevelopmet():
     quotes_api = requests.get("https://quotable.io/quotes?tags=technology")
     quotes = quotes_api.json()
     random = random_api.json()
-    posts = Posts.query.filter_by(category = "Software Development").all()
+    posts = Posts.query.filter_by(category = "Software Development").order_by(desc(Posts.created_on)).all()
     return render_template('Software Development.html', posts = posts, form = form, quotes = quotes, random = random)

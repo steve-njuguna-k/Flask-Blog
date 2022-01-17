@@ -261,13 +261,15 @@ def search():
     quotes_api = requests.get("https://quotable.io/quotes?tags=technology")
     quotes = quotes_api.json()
     random = random_api.json()
+    post = Posts.query
 
     if form.validate_on_submit():
         searched = form.search.data
-        query = Posts.query.filter(Posts.title.like('%' + searched + '%'))
-        posts = query.order_by(Posts.title).all()
+        query = post.filter(Posts.title.like('%' + searched + '%'))
+    
+    posts = query.order_by(Posts.title).all()
 
-        return render_template('Search Results.html', form = form, posts = posts, quotes = quotes, random = random)
+    return render_template('Search Results.html', form = form, posts = posts, quotes = quotes, random = random)
 
 @app.route('/posts/category/ai-machine-learning', methods=['GET', 'POST'])
 def aimachinelearning():

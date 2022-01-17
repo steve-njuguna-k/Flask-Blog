@@ -1,3 +1,4 @@
+import unittest
 from flask import Flask
 from flask_migrate import Migrate
 from flask_sqlalchemy import SQLAlchemy
@@ -36,3 +37,6 @@ def load_user(user_id):
     return User.query.get(user_id)
 
 from app import views
+
+tests = unittest.TestLoader().discover('tests')
+unittest.TextTestRunner(verbosity=2).run(tests)

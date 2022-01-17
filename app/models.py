@@ -1,6 +1,7 @@
 import datetime
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin
+from werkzeug.security import (generate_password_hash, check_password_hash)
 
 db = SQLAlchemy()
 
@@ -45,6 +46,17 @@ class User(UserMixin, db.Model):
     def get_id(self):
         return self.id
 
+    @property
+    def password(self):
+        raise AttributeError("You cannot read the password attribute")
+
+    @password.setter
+    def password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def verify_password(self, password):
+        return check_password_hash(self.password_hash, password)
+
     def save(self):
         db.session.add(self)
         db.session.commit()
@@ -65,6 +77,12 @@ class Posts(db.Model):
     created_on = db.Column(db.DateTime, default = datetime.datetime.utcnow())
     updated_on = db.Column(db.DateTime, nullable=True)
 
+    def __init__(self, title, description, category):
+        self.title = title
+        self.description = description
+        self.category = category
+        self.registered_on = datetime.datetime.now()
+
     def save(self):
         db.session.add(self)
         db.session.commit()
@@ -80,6 +98,9 @@ class Comments(db.Model):
     post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
     date_published = db.Column(db.DateTime, default = datetime.datetime.utcnow)
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
+
+    def __init__(self, comment):
+        self.comment = comment
 
     def __repr__(self):
         return '<Comment: {}>'.format(self.comment)

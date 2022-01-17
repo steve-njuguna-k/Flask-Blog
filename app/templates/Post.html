@@ -26,7 +26,7 @@
                         <div class="d-flex flex-row user-info">
                             <img class="rounded-circle" src="https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png" height="50" width="50">
                             <div class="d-flex flex-column justify-content-start ml-2">
-                                <a href="#">
+                                <a href="/author/{{ post.user.id }}">
                                     <span class="d-block font-weight-bold name">{{ post.user.first_name }} {{ post.user.last_name }}</span>
                                 </a>
                                 <span class="date text-black-50" style="font-size: 15px;"><i class="fas fa-calendar-alt"></i> {{ post.created_on.strftime('%d/%m/%Y') }}</span>
@@ -63,7 +63,7 @@
                 <br>
                 <div class="card shadow-sm">
                     <div class="card-body">
-                        <h5 class="card-title"><b>More From <span class="text-primary"> {{post.user.first_name }} {{ post.user.last_name }}</span></b></h5>
+                        <h5 class="card-title text-dark"><b>More From <span class="text-primary"> {{post.user.first_name }} {{ post.user.last_name }}</span></b></h5>
                         <br>
                         <p class="card-text">1. Know Your Audience</p>
                         <p class="card-text">2. Use Bullet Points</p>

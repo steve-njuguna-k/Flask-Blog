@@ -144,7 +144,6 @@ def add_tags(tag):
        return new_tag
 
 @app.route('/post/<int:id>', methods=['POST','GET'])
-@login_required
 def post(id):
     form = SearchForm()
     post = Posts.query.filter_by(id = id).first()

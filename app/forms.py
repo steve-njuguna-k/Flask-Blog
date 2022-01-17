@@ -61,3 +61,7 @@ class EditBlogPostsForm(FlaskForm):
 class CommentsForm(FlaskForm):
     comment = TextAreaField(label = 'Comment',validators=[DataRequired(), Length(min=6, max=255,  message='⚠️ Comment length must be between %(min)d and %(max)d characters!')], render_kw={"placeholder": "Your Comment", 'rows': 5})
     submit= SubmitField('Submit')
+
+class SearchForm(FlaskForm):
+    search = StringField(label='Search Blog Articles', validators=[DataRequired(), Length(min=3, max=100,  message='⚠️ Search length must be between %(min)d and %(max)d characters!')], render_kw={"placeholder": "Search Blog Articles"})
+    submit= SubmitField('Submit')

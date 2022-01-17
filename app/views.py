@@ -2,9 +2,9 @@ import datetime
 from app import app
 from flask import render_template, flash, redirect, request, url_for
 from .email import send_email
-from .models import Comments, Tags, Upvote, User, db, Posts
+from .models import Comments, Tags, User, db, Posts
 from flask_login import current_user, login_user, logout_user, login_required
-from .forms import CommentsForm, LoginForm, RegisterForm, BlogPostsForm, EditBlogPostsForm
+from .forms import CommentsForm, LoginForm, RegisterForm, BlogPostsForm, EditBlogPostsForm, SearchForm
 from flask_bcrypt import Bcrypt
 from .token import confirm_token, generate_confirmation_token
 bcrypt = Bcrypt(app)
@@ -12,12 +12,13 @@ import requests
 
 @app.route('/')
 def home():
+    form = SearchForm()
     random_api = requests.get("https://api.quotable.io/random")
     quotes_api = requests.get("https://quotable.io/quotes?tags=technology")
     quotes = quotes_api.json()
     random = random_api.json()
     posts = Posts.query.all()
-    return render_template('Index.html', posts = posts, quotes = quotes, random = random)
+    return render_template('Index.html', posts = posts, quotes = quotes, random = random, form = form)
 
 @app.route('/register', methods = ['GET', 'POST'])
 def register():
@@ -145,9 +146,10 @@ def add_tags(tag):
 @app.route('/post/<int:id>', methods=['POST','GET'])
 @login_required
 def post(id):
+    form = SearchForm()
     post = Posts.query.filter_by(id = id).first()
 
-    return render_template('Post.html', post = post)
+    return render_template('Post.html', post = post, form = form)
 
 @app.route('/post/<int:id>/edit', methods=['POST','GET'])
 @login_required
@@ -195,18 +197,21 @@ def delete_post(id):
 @app.route('/posts')
 @login_required
 def my_posts():
+    form = SearchForm()
     posts = Posts.query.filter_by(user_id = current_user._get_current_object().id)
-    return render_template('My Posts.html', posts = posts)
+    return render_template('My Posts.html', posts = posts, form = form)
 
 @app.route('/profile')
 def profile():
+    form = SearchForm()
     user = current_user._get_current_object()
-    return render_template('Profile.html', user = user)
+    return render_template('Profile.html', user = user, form = form)
 
 @app.route('/<int:id>/comment', methods=['POST','GET'])
 @login_required
 def addComment(id):
     form = CommentsForm()
+    searchform = SearchForm()
     post = Posts.query.get(id)
     comments = Comments.query.filter_by(post_id = id).all()
     comment = form.comment.data
@@ -219,30 +224,47 @@ def addComment(id):
         flash ('✅ Your Comment Has Been Successfully Added!', 'success')
         return redirect(url_for('addComment', id = id))
 
-    return render_template('Add Comment.html', form = form, post = post, comments = comments)
+    return render_template('Add Comment.html', form = form, post = post, comments = comments, searchform = searchform)
 
 @app.route('/post/<int:id>/comment/<int:comment_id>/delete', methods=['GET', 'POST'])
 @login_required
 def delete_comment(id, comment_id):
+    form = SearchForm()
     comment = Comments.query.filter_by(id = comment_id).first()
     post = Posts.query.filter_by(id = id).first()
 
     if not comment:
         flash('⚠️ Comment Does Not Exist!', 'danger')
-        return redirect(url_for('addComment'))
+        return redirect(url_for('addComment', form = form))
 
     elif current_user.id != comment.user_id and current_user.id != comment.post_id:
         flash('⚠️ You Are Not Authorized To Delete This Comment! You Are Not The Post Author or Comment Author.', 'danger')
-        return redirect(url_for('addComment', id = post.id))
+        return redirect(url_for('addComment', id = post.id, form = form))
     
     else:
         db.session.delete(comment)
         db.session.commit()
         flash ('✅ The Comment Has Been Successfully Deleted!', 'success')
         
-    return redirect(url_for('addComment', id = post.id))
+    return redirect(url_for('addComment', id = post.id, form = form))
 
 @app.route('/author/<int:id>')
 def author(id):
+    form = SearchForm()
     user = User.query.get(id)
-    return render_template('Profile.html', user = user)
+    return render_template('Profile.html', user = user, form = form)
+
+@app.route('/results', methods=['GET', 'POST'])
+def search():
+    form = SearchForm()
+    random_api = requests.get("https://api.quotable.io/random")
+    quotes_api = requests.get("https://quotable.io/quotes?tags=technology")
+    quotes = quotes_api.json()
+    random = random_api.json()
+
+    if form.validate_on_submit():
+        searched = form.search.data
+        query = Posts.query.filter(Posts.title.like('%' + searched + '%'))
+        posts = query.order_by(Posts.title).all()
+
+        return render_template('Search Results.html', form = form, posts = posts, quotes = quotes, random = random)

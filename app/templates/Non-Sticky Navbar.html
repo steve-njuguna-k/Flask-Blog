@@ -10,10 +10,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavDropdown">
                 <ul class="navbar-nav mx-auto">
-                    <form class="form-inline my-2 my-lg-0 searchbar">
+                    <form action="{{ url_for('search') }}" method="POST" class="form-inline my-2 my-lg-0 searchbar">
+                        {{ form.csrf_token }}
                         <div class="bg-light rounded searchbar">
                             <div class="input-group searchbar">
-                                <input type="search" placeholder="Search Blog Articles" class="form-control border-0 bg-light searchbar" style="width: 600px;">
+                                <input type="search" name="search" placeholder="Search Blog Articles" class="form-control border-0 bg-light searchbar" style="width: 600px;">
                                 <div class="input-group-append searchbar">
                                   <button type="submit" class="btn btn-link searchbar"><i class="fal fa-search"></i></button>
                                 </div>

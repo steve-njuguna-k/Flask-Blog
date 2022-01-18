@@ -403,15 +403,15 @@ a:hover {
 }
 
 .btn-outline-danger {
-    color: #dd022b690;
-    border-color: #dd022b690;
+    color: #022b69;
+    border-color: #022b69;
 	border-radius: .25rem;
 }
 
 .btn-outline-danger:hover {
     color: #fff;
-    background-color: #dd022b690;
-	border-color: #dd022b690;
+    background-color: #022b69;
+	border-color: #022b69;
 	border-radius: .25rem;
 }
 
@@ -545,30 +545,30 @@ a:hover {
 }
 
 .text-danger{
-	color: #dd022b690!important;
+	color: #022b69!important;
 }
 
 .post-form .btn-danger{
 	color: #fff;
-    background-color: #dd022b690!important;
+    background-color: #022b69!important;
 	border-radius: .25rem;
 }
 
 .post-form .btn-danger:hover{
 	color: #fff;
-    background-color: #dd022b690!important;
+    background-color: #022b69!important;
 	border-radius: .25rem;
 }
 
 .btn-danger{
 	color: #fff;
-    background-color: #dd022b690!important;
+    background-color: #022b69!important;
 	border-radius: .25rem;
 }
 
 .btn-danger:hover{
 	color: #fff;
-    background-color: #dd022b690!important;
+    background-color: #022b69!important;
 	border-radius: .25rem;
 }
 

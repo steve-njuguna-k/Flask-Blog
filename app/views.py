@@ -114,7 +114,7 @@ def add_post():
     form = BlogPostsForm()
 
     if form.validate_on_submit():
-        post = Posts()
+        post = Posts(form.title.data, form.description.data, form.category.data, form.tags.data)
         post.title = form.title.data
         post.description = form.description.data
         post.category = form.category.data

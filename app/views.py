@@ -114,7 +114,7 @@ def add_post():
     form = BlogPostsForm()
 
     if form.validate_on_submit():
-        post = Posts(form.title.data, form.description.data, form.category.data, form.tags.data)
+        post = Posts(form.title.data, form.description.data, form.category.data)
         post.title = form.title.data
         post.description = form.description.data
         post.category = form.category.data
@@ -130,7 +130,7 @@ def add_post():
         db.session.add(post)
         db.session.commit()
         flash ('✅ New Post Successfully Created!', 'success')
-        return redirect(url_for('add_post'))
+        return redirect(url_for('my_posts'))
 
     return render_template('Add Post.html', form = form)
 
@@ -167,7 +167,7 @@ def edit_post(id):
         db.session.add(post)
         db.session.commit()
         flash ('✅ The Post Has Been Successfully Updated!', 'success')
-        return redirect(url_for('edit_post', id = id))
+        return redirect(url_for('post', id = id))
 
     elif request.method == 'GET':
         form.title.data = post.title
@@ -218,11 +218,11 @@ def addComment(id):
     user_id = current_user._get_current_object().id
 
     if form.validate_on_submit():
-        comment = Comments(comment = comment, post = post, user_id = user_id)
+        comment = Comments(comment = comment, post_id = post.id, user_id = user_id)
         db.session.add(comment)
         db.session.commit()
         flash ('✅ Your Comment Has Been Successfully Added!', 'success')
-        return redirect(url_for('addComment', id = id))
+        return redirect(url_for('addComment', id = id, comments = comments))
 
     return render_template('Add Comment.html', form = form, post = post, comments = comments, searchform = searchform)
 

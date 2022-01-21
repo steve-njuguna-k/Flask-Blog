@@ -69,7 +69,7 @@
 													<a href="/author/{{ post.user.id }}">
 														<span class="d-block font-weight-bold name">{{ post.user.first_name }} {{ post.user.last_name }}</span>
 													</a>
-													<span class="date text-black-50" style="font-size: 15px;"><i class="fas fa-calendar-alt"></i> {{ post.created_on.strftime('%d/%m/%Y') }}</span>
+													<span class="date text-black-50" style="font-size: 15px;"><i class="fas fa-calendar-alt"></i> {{ post.created_on.strftime('%d/%m/%Y, %I:%M %p') }}</span>
 												</div>
 											</div>
 											<a href="/post/{{post.id}}">

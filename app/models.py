@@ -89,8 +89,10 @@ class Comments(db.Model):
     date_published = db.Column(db.DateTime, default = datetime.datetime.utcnow)
     user_id = db.Column(db.Integer,db.ForeignKey('users.id'))
 
-    def __init__(self, comment):
+    def __init__(self, comment, post_id, user_id):
         self.comment = comment
+        self.post_id = post_id
+        self.user_id = user_id
 
     def __repr__(self):
         return '<Comment: {}>'.format(self.comment)

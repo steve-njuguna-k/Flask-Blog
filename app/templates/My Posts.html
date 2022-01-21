@@ -7,6 +7,18 @@
 {% block content %}
 
 <div class="container-fluid main-section">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <div class="alert alert-{{ category }} alert-dismissible fade show text-center" role="alert">
+                    <span>{{ message }}</span>
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
     <div class="contaier">
         <b><h1 class="text-center py-4">My <span class="logocolour">Posts</span></h1></b>
     </div>
@@ -21,7 +33,7 @@
                             <a href="#">
                                 <span class="d-block font-weight-bold name">{{ post.user.first_name }} {{ post.user.last_name }}</span>
                             </a>
-                            <span class="date text-black-50" style="font-size: 15px;"><i class="fas fa-calendar-alt"></i> {{ post.created_on.strftime('%d/%m/%Y') }}</span>
+                            <span class="date text-black-50" style="font-size: 15px;"><i class="fas fa-calendar-alt"></i> {{ post.created_on.strftime('%d/%m/%Y, %I:%M %p') }}</span>
                         </div>
                     </div>
                     <a href="/post/{{post.id}}">
@@ -41,7 +53,7 @@
                         <button class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#exampleModal{{post.id}}"><i class="far fa-trash"></i> Delete</button>
                     </a>
                     {% endif %}
-                    <a class="float-right" href="#">
+                    <a class="float-right" href="/{{post.id}}/comment">
                       <button class="btn btn-outline-primary btn-sm"><i class="far fa-comment-alt"></i> Comment</button>
                     </a>
                 </div>

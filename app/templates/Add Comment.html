@@ -66,30 +66,40 @@
         <div class="col-sm-12">
             <h1 class="text-center" style="margin-top: 20px;">Comments</h1>
             <hr>
-            {% for comment in comments %}
-            <div class="card shadow-sm">
-                <div class="card-body h-100">
-                    <div class="d-flex flex-row user-info">
-                        <img class="rounded-circle" src="{{ comment.user.image_file }}" height="50" width="50">
-                        <div class="d-flex flex-column justify-content-start ml-2">
-                            <a href="{{ url_for('profile') }}">
-                                <span class="d-block font-weight-bold name">{{ comment.user.first_name }} {{ comment.user.last_name }}</span>
+            {% if comments %}
+                {% for comment in comments %}
+                <div class="card shadow-sm">
+                    <div class="card-body h-100">
+                        <div class="d-flex flex-row user-info">
+                            <img class="rounded-circle" src="{{ comment.user.image_file }}" height="50" width="50">
+                            <div class="d-flex flex-column justify-content-start ml-2">
+                                <a href="{{ url_for('profile') }}">
+                                    <span class="d-block font-weight-bold name">{{ comment.user.first_name }} {{ comment.user.last_name }}</span>
+                                </a>
+                                <span class="date text-black-50" style="font-size: 15px;"><i class="fas fa-calendar-alt"></i> {{ comment.date_published.strftime('%d/%m/%Y, %I:%M %p') }}</span>
+                            </div>
+                        </div>
+                        <p class="card-title text-dark">{{ comment.comment }}</p>
+                        <div class="stats float-right">
+                            <br>
+                            {% if current_user.id == post.user_id or current_user.id == comment.user_id %}
+                            <a href="{{url_for('delete_comment', id = post.id, comment_id = comment.id)}}" method="POST">
+                                <button type="submit" id="dislikes" class="btn btn-sm btn-danger" ><i class="far fa-trash"></i> Delete Comment</button>
                             </a>
-                            <span class="date text-black-50" style="font-size: 15px;"><i class="fas fa-calendar-alt"></i> {{ comment.date_published.strftime('%d/%m/%Y') }}</span>
+                            {% endif %}
                         </div>
                     </div>
-                    <p class="card-title text-dark">{{ comment.comment }}</p>
-                    <div class="stats float-right">
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="col-sm-12">
+                    <div class="text-center" style="margin-top: 70px;">
+                        <i class="far fa-comment fa-7x"></i>
                         <br>
-                        {% if current_user.id == post.user_id or current_user.id == comment.user_id %}
-                        <a href="{{url_for('delete_comment', id = post.id, comment_id = comment.id)}}" method="POST">
-                            <button type="submit" id="dislikes" class="btn btn-sm btn-danger" ><i class="far fa-trash"></i> Delete Comment</button>
-                        </a>
-                        {% endif %}
+                        <h3 class="text-center py-4">No Comments Found</h3>
                     </div>
                 </div>
-            </div>
-            {% endfor %}
+            {% endif %}
         </div>
     </div>
 

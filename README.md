@@ -1,4 +1,4 @@
-# Flask-Blog
+# Flask Blog
 A Flask application that allows user to post blog posts on all matters tech.. Users can also search for articles, comment on blog posts and see random quotes on tech.  It also allows a person to signup to be able to access the functionalities of the application
 
 ![](https://github.com/steve-njuguna-k/Flask-Blog/blob/master/Screenshot.PNG)
@@ -58,3 +58,5 @@ app.py
 If you have any question or contributions, please find me on [LinkedIn](https://www.linkedin.com/in/steve-njuguna-aa426096/)
 
 © 2022 Steve Njuguna
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
